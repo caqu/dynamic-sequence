@@ -1,0 +1,13 @@
+<script>
+  export let props;
+</script>
+
+<div>
+  bye bye {$props.first_name} {$props.last_name || ''}
+</div>
+<button 
+  style="padding:0 1rem"
+  on:click={() => window.location.reload()}>
+  Reload
+  &#x21bb;
+</button>
