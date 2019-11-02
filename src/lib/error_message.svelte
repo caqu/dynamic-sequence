@@ -1,7 +1,5 @@
 <script>
-  import { getContext } from "svelte";
   import { fade } from "svelte/transition";
-  import { interaction } from "../stores/contexts.js";
   
   export let code;
 </script>

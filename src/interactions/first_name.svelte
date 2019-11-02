@@ -1,13 +1,18 @@
 <script>
   import { slide } from "svelte/transition";
+  import I from "../lib/interaction.js";
+  const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
   export let callback = () => console.log("please define me parent");
 
   let falsy_name_error = false;
 
-  function handle_submit(event) {
-    event.preventDefault();
+  function handler(event) {
+    setTimeout(() => {
+      last_name_reducer(event.target.elements.last_name.value);
+      callback(true);
+    }, 300);
     this.elements.first_name.value;
     if (this.elements.first_name.value) {
       first_name_reducer(this.elements.first_name.value);
@@ -21,10 +26,10 @@
   }
 </script>
 
-<form on:submit={handle_submit}>
+<Interaction {handler}>
   {#if falsy_name_error}
     <div in:slide>Your name can't be falsy.</div>
   {/if}
   <div>What is your first name?</div>
   <input name="first_name" value="" />
-</form>
+</Interaction>

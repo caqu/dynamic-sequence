@@ -1,7 +1,6 @@
-// import App from "./App.svelte";
-import App from "./AppFlow.svelte";
+import app from "./app.svelte";
 
-export default new App({
+export default new app({
   target: document.body, // * You could target a specific DOM element here
   props: {
     // assets_path: "/"

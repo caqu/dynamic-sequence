@@ -1,17 +1,20 @@
 <script>
-  import I from "../lib/interaction.js";
   import { last_open_form_id } from "../stores/last_open_form_id.js";
-  //// import { user, set_first_name } from "../stores/user.js";
-  import { user_inputs } from "../stores/user_inputs.js";
+  import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
+
+  export let props;
+  export let callback;
 </script>
 
-I am O I! {$user_inputs.first_name}
-<!-- 
-<!-- <Interaction continue={$last_open_form_id}
-  sad="edit_products_in_cart" -\->
+<Interaction>
+  <Prompt>Welcome{#if $props.first_name} back, {$props.first_name}{/if}!</Prompt>
+  <Inputs>
+    <input type="submit" value="Continue" />
+  </Inputs>
+</Interaction>
+<!--
 <Interaction
-  id="opening_interaction"
   handler={() => {
     debugger;
     console.log('opening_interaction handler\

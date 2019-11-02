@@ -1,5 +1,6 @@
 <script>
   /**
+   * TODO revise this description after parseq!!
    * This App is a Coordinator of Interactions.
    * An Interaction consists of a Prompt,
    * one of more input controls (Inputs for short),
@@ -13,57 +14,53 @@
    * How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
    * Accessibility, use Tab kay to navigate? Arrow keys?
    */
+
   import { onMount, setContext } from "svelte";
   import { writable, derived } from "svelte/store";
-  import ContextualizedComponent from "./lib/contexttualized_component.svelte";
+  // import { put_into_sequence } from "./lib/control_flow";
+  import parseq from "./lib/parseq.js";
+  import syntax_highlight_json from "./lib/syntax_highlight_json";
   import * as I from "./interactions"; // These are the Components
-  import { planned_interactions } from "./stores/coordinator.js";
-  import { user_inputs } from "./stores/user_inputs.js";
+  import { initial_sequence } from "./config.js";
 
-  const component_queue = derived(
-    planned_interactions,
-    $planned_interactions => {
-      // From Array of Strings to Array of Component References
-      // From ['first_name'] to [I.firstName]
-      const a = $planned_interactions.map(
-        name =>
-          I[
-            name
-              .replace(/^[A-z]/, a => a.toUpperCase())
-              .replace(/_([A-z])/, (_, a) => a.toUpperCase())
-          ]
-      );
-      return a;
-    }
+  // Initial config
+  const main_sequence = writable(initial_sequence);
+  const widget_sequence = derived(main_sequence, $main_sequence =>
+    $main_sequence.map(s => WidgetFactory(s))
   );
-
-  onMount(() => {
-    // Get the first form and show it
-    // restorePlace();
+  const state = writable({
+    adjective: "beautiful",
+    main_sequence
   });
-
+  widget_sequence.subscribe(ws => {
+    console.log("parseq happening...");
+    parseq.sequence(ws)(show_end_of_sequence, state);
+  });
+  const ComponentRef = writable();
+  let callback;
+  function WidgetFactory(name) {
+    return function component_requestor(cb, output_from_caller) {
+      ComponentRef.set(I[name]);
+      callback = cb;
+    };
+  }
+  function show_end_of_sequence(value, reason) {
+    ComponentRef.set(I["end_interaction"]);
+    // if (value === undefined) {
+    //   alert("Something went wrong because" + reason);
+    // } else {
+    //   alert("Success! You got " + value);
+    // }
+  }
+  function go_to(event) {
+    const component_name = this.innerText;
+    console.log(component_name);
+    ComponentRef.set(I[component_name]);
+  }
 </script>
 
 <style>
   /* TODO these globals need to be scoped */
-  :global(*) {
-    /* TODO can I automagically determine the biggest possible font-size before user would need to scroll?
-  font: 20vh/1.5 sans-serif;  */
-    /*   font: 16px/1.5 sans-serif;  */
-    font-size: 20px;
-    line-height: 1.5;
-    font-family: monospace;
-  }
-  :global(body) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    /* overflow: hidden; // hm... risky... but needed to prevent scrollbar bouncing */
-  }
   /* :global(form) {
     position: absolute;
     left: auto;
@@ -111,24 +108,18 @@
   } */
 </style>
 
-<!-- 
-  To load a component directly we can call it like:
-    <FirstName />
-  But here we want to load any component that's listed in the queue.
-  So we use the planned_interactions to derived store of component_queue references
-  These component references point those imported Svelte components 
-  from the /interactions/index.js  -->
-{#each $component_queue as ComponentRef, index (ComponentRef)}
-  {#if index == 1}
-    <ContextualizedComponent
-      {index}
-      {ComponentRef}
-      name={$planned_interactions[index]} />
-  {/if}
-{/each}
+{#if $ComponentRef}
+  <svelte:component this={$ComponentRef} {callback} props={state} />
+{/if}
 
-<!-- <ol class="queue" style="position:absolute;bottom:0">
-  {#each $planned_interactions as I}
-    <li>{I}</li>
-  {/each}
-</ol> -->
+<div style="position:absolute;bottom:0;left:0">
+  <div>Sequence</div>
+  <ol style="margin:0">
+    {#each $main_sequence as w}
+      <li><u on:click={go_to}>{w}</u></li>
+    {/each}
+  </ol>
+</div>
+<pre class="state" style="position:absolute;bottom:0;right:0">
+  {@html syntax_highlight_json($state)}
+</pre>

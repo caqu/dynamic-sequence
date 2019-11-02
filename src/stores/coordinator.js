@@ -18,7 +18,7 @@ try {
   sessionStorage.setItem(name, JSON.stringify(initial_values));
 }
 
-export const planned_interactions = writable(initial_values);
+// export const planned_interactions = writable(initial_values);
 export const error_messages = writable([]);
 
 function restorePlace() {

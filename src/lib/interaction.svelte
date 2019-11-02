@@ -1,64 +1,48 @@
 <script>
-  import { onMount, setContext, getContext } from "svelte";
+  import { onMount, setContext } from "svelte";
   import { fly, scale } from "svelte/transition";
   import { quintOut, expoOut } from "svelte/easing";
   import { writable } from "svelte/store";
-  import { user_inputs } from "../stores/user_inputs.js";
-  import { interaction } from "../stores/contexts.js";
-  import {
-    is_showing_feedback,
-    error_messages,
-    handleInteractionCompleted
-  } from "../stores/coordinator.js";
+  import { default as LoadingAnimation } from "./loading_animation.svelte";
 
-  export let id;
-
-  // handler is a Function that returns a Promise, this default resolves immediately.
+  // handler is a Function that returns a Promise, 
+  // if you don't provide one, this default handler resolves immediately.
   export let handler = () =>
     new Promise((resolve, reject) => {
       resolve();
     });
 
-  let count_down = writable(0);
+  let pending = false;
   let move_to_next_question_interval_id;
 
-  setContext(interaction, {
-    id,
-    is_showing_feedback,
-    count_down
-  });
-
-  // function forwardPath(path) {
-  //   // Tell the Coordinator that we're all done with this Interaction
-  //   handleInteractionCompleted();
-  // }
-  // function returnPath(value) {
-  // console.warn("returnPath", new Date().getTime(), value);
-  // Show feedback
-  //   is_showing_feedback.set(true);
-  //   return value;
-  // }
-
-  function handleSubmission(event) {
+  function superHandler(event) {
     event.preventDefault();
-
-    // Store the Input given by the user to the Prompt.
-    user_inputs.update(I => {
-      const n = {};
-      n[event.target.id] = document.activeElement.value;
-      return { ...I, ...n };
-    });
-    //
-    // TODO what if i need to roll back?
-    //
+    pending = true;
     if (typeof handler === "function") {
-      const h = handler(event);
-      if (h instanceof Promise) {
-        h.then().catch();
-      }
+      handler(event);
+    } else {
+      throw new Error("Please send in a handler function");
     }
   }
-  let _store = JSON.stringify($user_inputs);
+  // OLD
+  // function handleSubmission(event) {
+  //   // Store the Input given by the user to the Prompt.
+  //   use r_inputs.update(I => {
+  //     const n = {};
+  //     n[event.target.id] = document.activeElement.value;
+  //     return { ...I, ...n };
+  //   });
+  //   //
+  //   // TODO what if i need to roll back?
+  //   //
+  //   if (typeof handler === "function") {
+  //     const h = handler(event);
+  //     if (h instanceof Promise) {
+  //       h.then().catch();
+  //     }
+  //   }
+  // }
+  // let _store = JSON.stringify($use r_inputs);
 
   let component;
   onMount(o => {
@@ -80,12 +64,15 @@
   }
 </style>
 
+<!-- on:submit={handleSubmission} -->
 <form
   bind:this={component}
-  {id}
   {...$$props}
-  on:submit={handleSubmission}
+  on:submit={superHandler}
   in:fly={{ y: 50, duration: 1600, easing: quintOut }}
   out:scale={{ duration: 1600, opacity: 0.9, start: 0, easing: expoOut }}>
-  <slot {id} />
+  <slot />
+  {#if pending}
+    <LoadingAnimation />
+  {/if}
 </form>

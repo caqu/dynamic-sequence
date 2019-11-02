@@ -1,8 +1,5 @@
 <script>
-  import { getContext } from "svelte";
-  import { interaction } from "../stores/contexts.js";
-  let { id, is_showing_feedback } = getContext(interaction);
-  import { user_inputs } from "../stores/user_inputs.js";
+
 </script>
 
 <style>

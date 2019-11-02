@@ -25,7 +25,7 @@ const componentForm = {
   postal_code: "short_name"
 };
 
-export function setShippingAddress(place) {
+export function set_shipping_address(place) {
   if (
     !place ||
     !Array.isArray(place.address_components) ||
