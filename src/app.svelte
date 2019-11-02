@@ -20,7 +20,7 @@
   // import { put_into_sequence } from "./lib/control_flow";
   import parseq from "./lib/parseq.js";
   import syntax_highlight_json from "./lib/syntax_highlight_json";
-  import * as I from "./interactions"; // These are the Components
+  import * as I from "./interaction_components";
   import { initial_sequence } from "./config.js";
 
   // Initial config
