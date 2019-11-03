@@ -10,7 +10,10 @@
     props.update(p => {
       // As an example, remove FirstName from sequence
       p.main_sequence.update(ms => {
-        return ms.filter(a => a != "shipping_address" && a != "Beauty");
+        return ms.filter(
+          a =>
+            a != "shipping_address" && a != "shipping_method" && a != "Beauty"
+        );
       });
       return {
         ...$props,
@@ -29,10 +32,7 @@
 </script>
 
 <Interaction>
-  <Prompt>
-    Isn't this a {$props.adjective || 'gorgeous'} sunset?
-    
-  </Prompt>
+  <Prompt>Isn't this a {$props.adjective || 'gorgeous'} sunset?</Prompt>
   <Inputs>
     <button on:click={yes}>Donate $5</button>
     <button on:click={no}>Buy Mug</button>

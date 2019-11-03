@@ -19,9 +19,10 @@
   import { writable, derived } from "svelte/store";
   // import { put_into_sequence } from "./lib/control_flow";
   import parseq from "./lib/parseq.js";
-  import syntax_highlight_json from "./lib/syntax_highlight_json";
   import * as I from "./interaction_components";
   import { initial_sequence } from "./config.js";
+  import ProgramVisualizer from "./lib/program_visualizer.svelte";
+  import ResultsVisualizer from "./lib/results_visualizer.svelte";
 
   // Initial config
   const main_sequence = writable(initial_sequence);
@@ -112,14 +113,7 @@
   <svelte:component this={$ComponentRef} {callback} props={state} />
 {/if}
 
-<div style="position:absolute;bottom:0;left:0">
-  <div>Sequence</div>
-  <ol style="margin:0">
-    {#each $main_sequence as w}
-      <li><u on:click={go_to}>{w}</u></li>
-    {/each}
-  </ol>
-</div>
-<pre class="state" style="position:absolute;bottom:0;right:0">
-  {@html syntax_highlight_json($state)}
-</pre>
+<!-- if debugging -->
+<ProgramVisualizer {main_sequence} {go_to} />
+<ResultsVisualizer {state} /> 
+<!-- fi debugging -->
