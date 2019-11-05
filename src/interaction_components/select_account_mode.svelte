@@ -14,13 +14,16 @@
 <Interaction {handler}>
   username
   <input type="email" value="" />
-  <br>
+  <br />
   password
   <input type="password" value="" />
-  <br>
+  <br />
   <input type="submit" value="Sign In" />
-  <br>
+  <br />
   or
-  <br>
-  <input type="button" value="Continue" />
+  <br />
+  <input
+    type="button"
+    value="Continue as a guest"
+    on:click={() => callback(false, 'Continue as a guest')} />
 </Interaction>

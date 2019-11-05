@@ -11,8 +11,8 @@
   const step_thru = arr => sequence(arr.map(s => WidgetFactory(s)));
   // AST: JSON to functions Editing a program in the browser.
   const initial_sequence = [
-    // "Brand intro",
-    // "Explain experience",
+    "Brand intro",
+    "Explain experience",
     "Product listing",
     // "Product variant selector",
     "Review cart",

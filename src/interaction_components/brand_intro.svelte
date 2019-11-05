@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
@@ -9,9 +9,12 @@
 
   let showing = false;
   onMount(() => (showing = true));
-  setTimeout(() => {
+  const clearer = setTimeout(() => {
     callback(true);
   }, 3000);
+  onDestroy(()=> {
+    clearTimeout(clearer);
+  })
 </script>
 
 <style>
