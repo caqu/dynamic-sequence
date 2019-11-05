@@ -1,4 +1,22 @@
 
+TODO turn this stream of consciousness into readable docs!!
+
+cool talk about rules https://www.youtube.com/watch?v=MAY4TvGUkZQ
+
+This App is a Coordinator of Interactions.
+An Interaction consists of a Prompt,
+one of more input controls (Inputs for short),
+and an interaction Handler.
+The Coordinator's role is to keep track of which Interactions took place,
+and which Interactions will be loaded next.
+? It also has configs for how to reach out to APIs
+
+Open Questions
+How do we do input validation?
+How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
+Accessibility, use Tab kay to navigate? Arrow keys?
+
+
 The real beauty here is the atomicity. Just as Tweets are composed into Feeds, these atomic Interactions can be:
 composed at runtime into a Stream of Interactions 
 tracked independently, and

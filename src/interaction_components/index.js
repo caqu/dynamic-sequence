@@ -1,17 +1,52 @@
-export { default as beauty } from "./beauty.svelte";
-export { default as confirm_order_inputs } from "./confirm_order_inputs.svelte";
-export { default as create_account } from "./create_account.svelte";
-export { default as end_interaction } from "./end_interaction.svelte";
-export { default as first_name } from "./first_name.svelte";
-export { default as last_name } from "./last_name.svelte";
-export { default as opening_interaction } from "./opening_interaction.svelte";
-export { default as order_confirmation } from "./order_confirmation.svelte";
-export { default as password } from "./password.svelte";
-export {
-  default as select_payment_method
-} from "./select_payment_method.svelte";
-export { default as shipping_address } from "./shipping_address.svelte";
-export { default as shipping_method } from "./shipping_method.svelte";
-export { default as sign_in_or_guest } from "./sign_in_or_guest.svelte";
-export { default as username } from "./username.svelte";
-export { default as verify_email } from "./verify_email.svelte";
+import product_listing from "./product_listing.svelte";
+import product_variant_selector from "./product_variant_selector.svelte";
+
+import confirm_order_inputs from "./confirm_order_inputs.svelte";
+import create_account from "./create_account.svelte";
+import end_interaction from "./end_interaction.svelte";
+import first_name from "./first_name.svelte";
+import last_name from "./last_name.svelte";
+import order_confirmation from "./order_confirmation.svelte";
+import password from "./password.svelte";
+import shipping_address from "./shipping_address.svelte";
+import shipping_method from "./shipping_method.svelte";
+import sign_in_or_guest from "./sign_in_or_guest.svelte";
+import username from "./username.svelte";
+import verify_email from "./verify_email.svelte";
+
+import brand_intro from "./brand_intro.svelte";
+import explain_experience from "./explain_experience.svelte";
+import review_cart from "./review_cart.svelte";
+import apply_promo_code from "./apply_promo_code.svelte";
+import select_account_mode from "./select_account_mode.svelte";
+import select_shipping_address from "./select_shipping_address.svelte";
+import select_shipping_method from "./select_shipping_method.svelte";
+import select_payment_method from "./select_payment_method.svelte";
+import verify_order from "./verify_order.svelte";
+
+// export default Object.freeze({
+export default {
+  "Brand intro": brand_intro,
+  "Explain experience": explain_experience,
+  "Product listing": product_listing,
+  "Product variant selector": product_variant_selector,
+  "Review cart": review_cart,
+  "Apply promo code": apply_promo_code,
+  "Select account mode": select_account_mode,
+  "Select shipping address": select_shipping_address,
+  "Select shipping method": select_shipping_method,
+  "Select payment method": select_payment_method,
+  "Verify order": verify_order,
+  confirm_order_inputs,
+  create_account,
+  end_interaction,
+  first_name,
+  last_name,
+  order_confirmation,
+  password,
+  shipping_address,
+  shipping_method,
+  sign_in_or_guest,
+  username,
+  verify_email
+};

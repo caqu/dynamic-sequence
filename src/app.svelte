@@ -1,50 +1,103 @@
 <script>
-  /**
-   * TODO revise this description after parseq!!
-   * This App is a Coordinator of Interactions.
-   * An Interaction consists of a Prompt,
-   * one of more input controls (Inputs for short),
-   * and an interaction Handler.
-   * The Coordinator's role is to keep track of which Interactions took place,
-   * and which Interactions will be loaded next.
-   * ? It also has configs for how to reach out to APIs
-   *
-   * Open Questions
-   * How do we do input validation?
-   * How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
-   * Accessibility, use Tab kay to navigate? Arrow keys?
-   */
-
   import { onMount, setContext } from "svelte";
   import { writable, derived } from "svelte/store";
-  // import { put_into_sequence } from "./lib/control_flow";
   import parseq from "./lib/parseq.js";
-  import * as I from "./interaction_components";
-  import { initial_sequence } from "./config.js";
-  import ProgramVisualizer from "./lib/program_visualizer.svelte";
+  import I from "./interaction_components";
   import ResultsVisualizer from "./lib/results_visualizer.svelte";
-
-  // Initial config
+  import RulesVisualizer from "./lib/rules_visualizer.svelte";
+  import ProgramVisualizer from "./lib/program_visualizer.svelte";
+  const { fallback, sequence } = parseq;
+  const either = arr => fallback(arr.map(s => WidgetFactory(s)));
+  const step_thru = arr => sequence(arr.map(s => WidgetFactory(s)));
+  // AST: JSON to functions Editing a program in the browser.
+  const initial_sequence = [
+    // "Brand intro",
+    // "Explain experience",
+    "Product listing",
+    // "Product variant selector",
+    "Review cart",
+    "Apply promo code",
+    "Select account mode",
+    // "Select shipping address",
+    // "Select shipping method",
+    "Select payment method",
+    "Verify order"
+  ];
+  const interactions = {
+    "Select account mode": either([
+      "Sign in or create account",
+      "Proceed as guest" // + retry sign-in button (?)
+    ]),
+    "Sign in or create account": step_thru([
+      "Enter username", // checks if the username exists in the DB
+      "Submit password" // sign in or create an account // reply we sent you email confirmation
+    ]),
+    // Select from saved
+    "Select shipping address": step_thru([
+      "Enter first and last name",
+      "Enter shipping address",
+      "Enter phone number",
+      "Enter email address",
+      "Sign up for newsletter", // submits form to backend
+      either(["Verify shipping", "Select shipping address"])
+    ]),
+    "Select shipping method": false, // submits form to backend
+    "Select payment method": either([
+      "Pay with PayPal",
+      "Pay with a credit card"
+    ]),
+    "Pay with a credit card": step_thru([
+      "Enter name on card",
+      "Enter credit card number",
+      "Enter expiration MM/YY",
+      "Enter security code CVV",
+      either([
+        "Use shipping address as billing address",
+        "Enter billing address"
+      ])
+    ]),
+    "Verify order": false, // e.g.: click "Edit shipping method" adds an 'Select shipping method' before this one.
+    "Order confirmation": false
+  };
+  const rule_set = writable([
+    {
+      condition: "customer has not seen explanation",
+      action: "add Explain experience next"
+    },
+    {
+      condition: "any cart.item is shippable",
+      action: "add shipping address before Select payment method"
+    },
+    {
+      condition: "any cart.item is rated mature and age verification is missing",
+      action: "add age verification next"
+    }
+  ]);
   const main_sequence = writable(initial_sequence);
   const widget_sequence = derived(main_sequence, $main_sequence =>
     $main_sequence.map(s => WidgetFactory(s))
   );
   const state = writable({
-    adjective: "beautiful",
-    main_sequence
+    // adjective: "beautiful",
+    // main_sequence
   });
   widget_sequence.subscribe(ws => {
-    console.log("parseq happening...");
-    parseq.sequence(ws)(show_end_of_sequence, state);
+    sequence(ws)(show_end_of_sequence, state);
+    // Program
+    // sequence(initial_sequence)("Order confirmation");
   });
   const ComponentRef = writable();
+  
   let callback;
   function WidgetFactory(name) {
     return function component_requestor(cb, output_from_caller) {
+      // console.log("component_requestor", name, I);
+      I[name];
       ComponentRef.set(I[name]);
       callback = cb;
     };
   }
+  // Our program may never "end", rather loop onto itself
   function show_end_of_sequence(value, reason) {
     ComponentRef.set(I["end_interaction"]);
     // if (value === undefined) {
@@ -57,6 +110,13 @@
     const component_name = this.innerText;
     console.log(component_name);
     ComponentRef.set(I[component_name]);
+  }
+
+  function x(s) {
+    console.log("get x", s, interactions);
+    if (typeof interactions[s] === "function") return interactions[s];
+    // if (components[s]) return components[s];
+    throw new Error(`Please create interaction "${s}"`);
   }
 </script>
 
@@ -110,10 +170,20 @@
 </style>
 
 {#if $ComponentRef}
+  <!-- TODO https://www.brianstorti.com/the-actor-model/
+this explore if this needs to be an iframe  so that we can 
+let it crash, and have this app refresh the contents 
+to stable state.
+Or an import(file.js)?
+ -->
   <svelte:component this={$ComponentRef} {callback} props={state} />
+{:else}
+  <div style="color:red;padding:1rem;background:white">
+    Please configure component "{$main_sequence[0]}"</div>
 {/if}
 
 <!-- if debugging -->
+<ResultsVisualizer {state} />
+<RulesVisualizer {rule_set} />
 <ProgramVisualizer {main_sequence} {go_to} />
-<ResultsVisualizer {state} /> 
 <!-- fi debugging -->

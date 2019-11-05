@@ -12,7 +12,7 @@ if (!saved_address) {
     // country: address["country"]
   };
 }
-console.log("saved_address", saved_address);
+// console.log("saved_address", saved_address);
 export const shipping_address = writable(saved_address);
 
 // Configure which formats from Google Maps object to use
