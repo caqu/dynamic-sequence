@@ -1,6 +1,9 @@
 # HUM
 Hum is a project where the client application is the primary coordinator of interactions between the system and the human.
 
+## Live demo
+https://dynamic-sequence.netlify.com/
+
 ## Workflows
 
 A workflow is a series of activities.
