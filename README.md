@@ -1,5 +1,4 @@
 # HUM
-![Fallback](/documentation/fallback.png)
 Hum is a project where the client application is the primary coordinator of interactions between the system and the human.
 
 ## Workflows
@@ -10,11 +9,11 @@ Conceptually based on parseq .
 
 ### Fallback workflow
 
-![Fallback](/documentation/fallback.png)
+![Fallback](https://raw.githubusercontent.com/caqu/dynamic-sequence/master/public/documentation/fallback.png)
 
 ### Sequence workflow
 
-![Sequence](/documentation/sequence.png)
+![Sequence](https://raw.githubusercontent.com/caqu/dynamic-sequence/master/public/documentation/sequence.png)
 
 ## Activities
 
@@ -55,7 +54,7 @@ For example, setting Country, changes Prompt to State or Province.
 - https://svelte.dev/
 - Talk about rules https://www.youtube.com/watch?v=MAY4TvGUkZQ
 - https://en.wikipedia.org/wiki/Control_theory
-- /README_SVELTE.md
+- ./README_SVELTE.md
 
 
 ## Questions and Answers
