@@ -58,9 +58,11 @@ For example, setting Country, changes Prompt to State or Province.
 - Talk about rules https://www.youtube.com/watch?v=MAY4TvGUkZQ
 - https://en.wikipedia.org/wiki/Control_theory
 - ./README_SVELTE.md
-
+- https://v8.dev/features/dynamic-import
+- A word of caution on this approach https://blog.mgechev.com/2019/05/11/dynamic-imports-javascript/
 
 ## Questions and Answers
+- Are you suggesting that every Activity has it's own server? Yeah, maybe, yeah... ?
 - How do we handle relationships between activity? Through the callback, the activity gives back control to it's parent.
 - How do we do input validation? It's up to each activity. Each activity can decide what is best, for example server-based validation, jQuery validate, native browser validation can all be good choices in different contexts. 
 - How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?

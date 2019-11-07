@@ -3,8 +3,10 @@
   import { fade } from "svelte/transition";
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
-
-  export let callback;
+  
+  console.log('Brand intro in the house!!');
+  
+  export let callback = () => {};
   export let props;
 
   let showing = false;
