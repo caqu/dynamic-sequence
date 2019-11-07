@@ -1,137 +1,74 @@
+# HUM
+![Fallback](/documentation/fallback.png)
+Hum is a project where the client application is the primary coordinator of interactions between the system and the human.
 
-TODO turn this stream of consciousness into readable docs!!
+## Workflows
 
-cool talk about rules https://www.youtube.com/watch?v=MAY4TvGUkZQ
+A workflow is a series of activities.
 
-This App is a Coordinator of Interactions.
-An Interaction consists of a Prompt,
-one of more input controls (Inputs for short),
-and an interaction Handler.
-The Coordinator's role is to keep track of which Interactions took place,
-and which Interactions will be loaded next.
-? It also has configs for how to reach out to APIs
+Conceptually based on parseq .
 
-Open Questions
-How do we do input validation?
-How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
-Accessibility, use Tab kay to navigate? Arrow keys?
+### Fallback workflow
 
+![Fallback](/documentation/fallback.png)
 
+### Sequence workflow
+
+![Sequence](/documentation/sequence.png)
+
+## Activities
+
+Formerly known as Interaction, an Activity is made up of a prompt, input controls, custom logic, and a callback.
+
+## Prompt
+...
+
+## Inputs
+...
+
+## Callback
+...
+
+## Concepts and practical use cases
+(work in progress)
 The real beauty here is the atomicity. Just as Tweets are composed into Feeds, these atomic Interactions can be:
-composed at runtime into a Stream of Interactions 
+composed at runtime into a Stream of Interactions
 tracked independently, and
 aggregated into a shared state.
 The question of "what to show when and where" has gotten increasingly harder to manage:
-if user is "guest", show login form.
-if cart has shippable items, show shipping_address.
-if cart has an age-restricted product, show age verification.
-if customer submitted a PLCC, show shipping_method again but now containing additional options.
+- if user is "guest", show login form.
+- if cart has shippable items, show shipping_address.
+- if cart has an age-restricted product, show age verification.
+- if customer submitted a PLCC, show shipping_method again but now containing additional options.
 
 With today's UI patterns, this becomes the equivalent of pop-up hell. Every UI component is competing for your attention and orchestration is driven by a ton of custom code to support progress gates and custom responsive layouts with hard-coded business logic. I estimate that this complexity leads to a high-cost of development and high-risk of bugs, and limits Business' capabilities to deliver creative and comprehensive solutions.
 
 So I'm writing a Rules Engine the manages the Interaction Stream. This way, the order of future Interactions will be based on the current state, the customer's prior inputs, and the rules given. Thus far I have that: an Interaction is made of a Prompt, Input, and Next. The Prompt can show current state, like "Hi {first_name}. What's your last name?". The customer drives the experience through Inputs. And Next runs through the rules engine to determine what to show next.
-  
+
 In the prototype the Interaction Stream is shown in a stand-alone page, but the format would allow you to put this inline anywhere, like in a PDP or a PLP, or in an adaptive layout that contains a progress bar, or Order Summary, when presented on a large-enough screen.
 
-Interaction
-  Prompt
-  Inputs
-  Next
-    Set in sessionStorage
-    Post to API server
-    Feedback
-    Connect (Automatic Forward)
-    Forward button
-    Re-do button. 
-    Catch(es) (
-      Re-Prompt, 
-      Show error, 
-      Show alternative path
-    )
- 
-TODO How do we handle relationships between actions?
-  For example, setting Country, changes Prompt to State or Province. 
+For example, setting Country, changes Prompt to State or Province.
 
 
+## References and inspirations
+- https://github.com/douglascrockford/parseq
+- https://svelte.dev/
+- Talk about rules https://www.youtube.com/watch?v=MAY4TvGUkZQ
+- https://en.wikipedia.org/wiki/Control_theory
+- /README_SVELTE.md
 
 
-
-
-
-
-
-
-
-
-
-*Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
-
----
-
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
-```
+## Questions and Answers
+- How do we handle relationships between activity? Through the callback, the activity gives back control to it's parent.
+- How do we do input validation? It's up to each activity. Each activity can decide what is best, for example server-based validation, jQuery validate, native browser validation can all be good choices in different contexts. 
+- How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
+- Accessibility, use Tab key to navigate? Arrow keys?
+- Can we have a automatic sessionStorage?
+- How do we post to API server?
+- How do we do an automatic forward? See "brand intro" activity.
+- Can we have a global Forward button?
+- Can we have Catch(es)? See Fallback.
+- Can we have a Re-Prompt?
+- Can we have a Re-do button?
+- Can we have a global error component?
+- Can we show an alternative path?

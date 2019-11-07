@@ -12,9 +12,9 @@
   const clearer = setTimeout(() => {
     callback(true);
   }, 3000);
-  onDestroy(()=> {
+  onDestroy(() => {
     clearTimeout(clearer);
-  })
+  });
 </script>
 
 <style>
@@ -24,7 +24,6 @@
     margin: 0;
     padding: 0;
     position: absolute;
-    
   }
 </style>
 

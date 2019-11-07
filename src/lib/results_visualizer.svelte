@@ -21,7 +21,7 @@
 </style>
 
 <div class="results_visualizer">
-  <div>Actor's state</div>
+  <div>App state</div>
   <pre>
     {@html syntax_highlight_json($state)}
   </pre>

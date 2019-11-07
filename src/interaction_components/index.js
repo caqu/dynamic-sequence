@@ -1,6 +1,7 @@
 import product_listing from "./product_listing.svelte";
 import product_variant_selector from "./product_variant_selector.svelte";
 
+import menu from "./menu.svelte";
 import confirm_order_inputs from "./confirm_order_inputs.svelte";
 import create_account from "./create_account.svelte";
 import end_interaction from "./end_interaction.svelte";
@@ -16,6 +17,7 @@ import verify_email from "./verify_email.svelte";
 
 import brand_intro from "./brand_intro.svelte";
 import explain_experience from "./explain_experience.svelte";
+import explain_experience_2 from "./explain_experience_2.svelte";
 import review_cart from "./review_cart.svelte";
 import apply_promo_code from "./apply_promo_code.svelte";
 import select_account_mode from "./select_account_mode.svelte";
@@ -26,8 +28,10 @@ import verify_order from "./verify_order.svelte";
 
 // export default Object.freeze({
 export default {
+  Menu: menu,
   "Brand intro": brand_intro,
   "Explain experience": explain_experience,
+  "Explain experience part 2": explain_experience_2,
   "Product listing": product_listing,
   "Product variant selector": product_variant_selector,
   "Review cart": review_cart,

@@ -3,6 +3,7 @@
   import { writable, derived } from "svelte/store";
   import parseq from "./lib/parseq.js";
   import I from "./interaction_components";
+  import MenuButton from "./lib/menu_button.svelte";
   import ResultsVisualizer from "./lib/results_visualizer.svelte";
   import RulesVisualizer from "./lib/rules_visualizer.svelte";
   import ProgramVisualizer from "./lib/program_visualizer.svelte";
@@ -11,10 +12,12 @@
   const step_thru = arr => sequence(arr.map(s => WidgetFactory(s)));
   // AST: JSON to functions Editing a program in the browser.
   const initial_sequence = [
+    // "Menu",
     "Brand intro",
     "Explain experience",
     "Product listing",
     // "Product variant selector",
+    "Explain experience part 2",
     "Review cart",
     "Apply promo code",
     "Select account mode",
@@ -69,7 +72,8 @@
       action: "add shipping address before Select payment method"
     },
     {
-      condition: "any cart.item is rated mature and age verification is missing",
+      condition:
+        "any cart.item is rated mature and age verification is missing",
       action: "add age verification next"
     }
   ]);
@@ -87,7 +91,7 @@
     // sequence(initial_sequence)("Order confirmation");
   });
   const ComponentRef = writable();
-  
+
   let callback;
   function WidgetFactory(name) {
     return function component_requestor(cb, output_from_caller) {
@@ -97,14 +101,10 @@
       callback = cb;
     };
   }
-  // Our program may never "end", rather loop onto itself
   function show_end_of_sequence(value, reason) {
-    ComponentRef.set(I["end_interaction"]);
-    // if (value === undefined) {
-    //   alert("Something went wrong because" + reason);
-    // } else {
-    //   alert("Success! You got " + value);
-    // }
+    // Our program may never "ends",
+    // rather it loop onto itself from Order Confirmation 
+    // to Continue Shopping.
   }
   function go_to(event) {
     const component_name = this.innerText;
@@ -169,6 +169,8 @@
   } */
 </style>
 
+<MenuButton callback={()=>alert('TODO show menu')} />
+
 {#if $ComponentRef}
   <!-- TODO https://www.brianstorti.com/the-actor-model/
 this explore if this needs to be an iframe  so that we can 
@@ -179,7 +181,8 @@ Or an import(file.js)?
   <svelte:component this={$ComponentRef} {callback} props={state} />
 {:else}
   <div style="color:red;padding:1rem;background:white">
-    Please configure component "{$main_sequence[0]}"</div>
+    Please configure component "{$main_sequence[0]}"
+  </div>
 {/if}
 
 <!-- if debugging -->

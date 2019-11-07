@@ -22,17 +22,17 @@
     donate5: {
       name: "Make a donation",
       price: "$5",
-      src: "mtyp-name-your-own-price-donation-image.png"
+      src: "/demo/mtyp-name-your-own-price-donation-image.png"
     },
     mug67: {
       name: "Mug",
       price: "$15",
-      src: "51graM2SdzL._SX466_.jpg"
+      src: "/demo/51graM2SdzL._SX466_.jpg"
     },
     tshirt16: {
       name: "Mug",
       price: "$15",
-      src: "il_570xN.920729875_naed.jpg"
+      src: "/demo/il_570xN.920729875_naed.jpg"
     }
   };
   // Simulated commerce API
@@ -58,7 +58,7 @@
   img {
     display: block;
     margin: 0 auto;
-    width: 96px;
+    height: 96px;
   }
   p {
     margin-top: 0;
@@ -70,9 +70,11 @@
     <p>Here's what we've got so far.</p>
     <p>
       {#each product_data as ci}
-        <img transition:fade src={ci.src} alt=" " />
+        <div style="height:96px">
+          <img transition:fade src={ci.src} alt=" " />
+        </div>
       {/each}
-      You picked up a 
+      You picked up a
       {#each product_data as ci}
         {ci.name}
         {#if ci.size}on size {ci.size}.{/if}
@@ -85,7 +87,9 @@
     {#if $props.commerceItems}
       <input type="submit" value="Checkout" />
       <input type="submit" value="Edit Products" />
-    {:else}{/if}
+    {:else}
+      ...
+    {/if}
     <input type="text" placeholder="Find more products" />
   </Inputs>
 </Interaction>
