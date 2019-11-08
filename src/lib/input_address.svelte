@@ -3,8 +3,8 @@
   export let placeholder = "123";
   export let value = "";
   let input;
-  export let fillInAddress = place => {
-    console.log('Implement this reducer on the parent component');
+  export let fillInAddress = function(place) {
+    console.log("Implement this reducer on the parent component");
   };
 
   onMount(function() {

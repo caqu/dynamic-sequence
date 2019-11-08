@@ -1154,7 +1154,7 @@ function create_fragment$1(ctx) {
 			if (if_block) if_block.c();
 
 			set_attributes(form, form_data);
-			add_location(form, file$1, 68, 0, 1817);
+			add_location(form, file$1, 68, 0, 1822);
 			dispose = listen_dev(form, "submit", ctx.superHandler);
 		},
 
@@ -1255,7 +1255,7 @@ function instance$1($$self, $$props, $$invalidate) {
   // handler is a Function that returns a Promise,
   // if you don't provide one, this default handler resolves immediately.
   let { handler = function() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, reject) {
       resolve();
     });
   } } = $$props;
@@ -1551,7 +1551,7 @@ function create_fragment$4(ctx) {
 			input_1 = element("input");
 			input_1.value = ctx.value;
 			attr_dev(input_1, "placeholder", ctx.placeholder);
-			add_location(input_1, file$4, 50, 0, 1861);
+			add_location(input_1, file$4, 50, 0, 1868);
 		},
 
 		l: function claim(nodes) {
@@ -1591,8 +1591,8 @@ function create_fragment$4(ctx) {
 function instance$4($$self, $$props, $$invalidate) {
 	let { placeholder = "123", value = "" } = $$props;
   let input;
-  let { fillInAddress = place => {
-    console.log('Implement this reducer on the parent component');
+  let { fillInAddress = function(place) {
+    console.log("Implement this reducer on the parent component");
   } } = $$props;
 
   onMount(function() {

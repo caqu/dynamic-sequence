@@ -3,7 +3,9 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props; // a writable store
-  export let callback = () => console.log("please define me parent");
+  export let callback = function() {
+    console.log("please define me parent");
+  };
 
   // TODO This will be updated to use a commerce backend API
   const handleClick = function(event) {

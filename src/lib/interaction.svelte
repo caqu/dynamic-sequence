@@ -8,7 +8,7 @@
   // handler is a Function that returns a Promise,
   // if you don't provide one, this default handler resolves immediately.
   export let handler = function() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, reject) {
       resolve();
     });
   };

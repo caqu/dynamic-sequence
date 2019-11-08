@@ -2,7 +2,7 @@
   import { onMount, setContext } from "svelte";
   import { writable, derived } from "svelte/store";
   import parseq from "./lib/parseq.js";
-  // import I from "./interaction_components";
+  // import I from "./activities";
   import MenuButton from "./lib/menu_button.svelte";
   import ResultsVisualizer from "./lib/results_visualizer.svelte";
   import RulesVisualizer from "./lib/rules_visualizer.svelte";
@@ -224,19 +224,19 @@
   } */
 </style>
 
-<!-- 
+<!--
 import SvelteComponent from "svelte_component";
 <SvelteComponent />
  -->
 
-<!--  
+<!--
 <MenuButton callback={function(){alert('TODO show menu')}} />
  -->
 
 {#if $ComponentRef}
   <!-- TODO https://www.brianstorti.com/the-actor-model/
-this explore if this needs to be an iframe  so that we can 
-let it crash, and have this app refresh the contents 
+this explore if this needs to be an iframe  so that we can
+let it crash, and have this app refresh the contents
 to stable state.
 Or an import(file.js)?
  -->

@@ -11,11 +11,11 @@ const production = !process.env.ROLLUP_WATCH;
 let next_live_reload_port = 35729;
 let output_list = Object.keys(component_list).map(name => {
   const file_name = component_list[name];
-  // input_path: "src/interaction_components/" + file_name + ".svelte"
-  // input_path: "src/interaction_components/" + file_name + ".js"
+  // input_path: "src/activities/" + file_name + ".svelte"
+  // input_path: "src/activities/" + file_name + ".js"
   return {
     // input: "src/main.js",
-    input: "src/interaction_components/" + file_name + ".svelte",
+    input: "src/activities/" + file_name + ".svelte",
     output: {
       // sourcemap: true,
       file: pkg.module,

@@ -53,6 +53,7 @@ For example, setting Country, changes Prompt to State or Province.
 
 
 ## References and inspirations
+- https://www.youtube.com/watch?v=DxnYQRuLX7Q
 - https://github.com/douglascrockford/parseq
 - https://svelte.dev/
 - Talk about rules https://www.youtube.com/watch?v=MAY4TvGUkZQ
@@ -64,7 +65,7 @@ For example, setting Country, changes Prompt to State or Province.
 ## Questions and Answers
 - Are you suggesting that every Activity has it's own server? Yeah, maybe, yeah... ?
 - How do we handle relationships between activity? Through the callback, the activity gives back control to it's parent.
-- How do we do input validation? It's up to each activity. Each activity can decide what is best, for example server-based validation, jQuery validate, native browser validation can all be good choices in different contexts. 
+- How do we do input validation? It's up to each activity. Each activity can decide what is best, for example server-based validation, jQuery validate, native browser validation can all be good choices in different contexts.
 - How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
 - Accessibility, use Tab key to navigate? Arrow keys?
 - Can we have a automatic sessionStorage?
