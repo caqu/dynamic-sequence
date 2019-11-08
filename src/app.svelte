@@ -11,8 +11,19 @@
   // Separate repos for Activities
 
   const { fallback, sequence } = parseq;
-  const either = arr => fallback(arr.map(s => WidgetFactory(s)));
-  const step_thru = arr => sequence(arr.map(s => WidgetFactory(s)));
+  const string_to_widget = function(str) {
+    return WidgetFactory(str);
+  };
+  const string_array_to_widget_array = function(arr) {
+    return arr.map(string_to_widget);
+  };
+  const either = function(arr) {
+    return fallback(string_array_to_widget_array(arr));
+  };
+  const step_thru = function(arr) {
+    return sequence(string_array_to_widget_array(arr));
+  };
+
   // AST: JSON to functions Editing a program in the browser.
   const initial_sequence = [
     // "Menu",
@@ -82,32 +93,26 @@
   ]);
   const main_sequence = writable(initial_sequence);
   const loaded_widgets = writable({});
-  const widget_sequence = derived(
-    [main_sequence, loaded_widgets],
-    ({ 0: main_sequence, 1: loaded_widgets }) => {
-      return main_sequence.map(widget_name => {
-        if ($loaded_widgets[widget_name]) {
-          return WidgetFactory(widget_name);
-        } else {
-          WidgetLoader(widget_name);
-          
-          return function(callback, value) {
-            console.log("Placeholder requestor function");
-          };
-        }
-      });
-    }
-  );
+  const widget_sequence = derived([main_sequence, loaded_widgets], function({
+    0: main_sequence,
+    1: loaded_widgets
+  }) {
+    return main_sequence.map(function(widget_name) {
+      if ($loaded_widgets[widget_name]) {
+        return WidgetFactory(widget_name);
+      } else {
+        WidgetLoader(widget_name);
+
+        return function(callback, value) {
+          console.log("Placeholder requestor function");
+        };
+      }
+    });
+  });
 
   // Put widget instances into Parseq
-  widget_sequence.subscribe(ws => {
-    
-    ws;
+  widget_sequence.subscribe(function(ws) {
     sequence(ws)(show_end_of_sequence, {});
-    // For example sequence(initial_sequence_array)("End");
-    // sequence(ws)(() => {
-    //   console.log("The top-level sequence should not end.");
-    // });
   });
   const ComponentRef = writable();
 
@@ -117,17 +122,17 @@
     const file_name = component_list[bundle_name];
     // For example /bundles/brand_intro.js
     return import(`/bundles/${file_name}.js`)
-      .then(loaded_component => {
+      .then(function(loaded_component) {
         // debugger;
         if (loaded_component) {
-          loaded_widgets.update(obj => {
+          loaded_widgets.update(function(obj) {
             const newObj = {};
             newObj[bundle_name] = loaded_component;
             return Object.assign({}, obj, newObj);
           });
         }
       })
-      .catch(message => {
+      .catch(function(message) {
         console.log("Failed to fetch activity", message);
       });
   }
@@ -225,7 +230,7 @@ import SvelteComponent from "svelte_component";
  -->
 
 <!--  
-<MenuButton callback={()=>alert('TODO show menu')} />
+<MenuButton callback={function(){alert('TODO show menu')}} />
  -->
 
 {#if $ComponentRef}

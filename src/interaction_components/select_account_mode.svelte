@@ -5,9 +5,12 @@
   export let props;
   export let callback;
 
-  const handler = event => {
+  const handler = function(event) {
     console.log(event);
     callback(true);
+  };
+  const handleClick = function() {
+    callback(false, "Continue as a guest");
   };
 </script>
 
@@ -22,8 +25,5 @@
   <br />
   or
   <br />
-  <input
-    type="button"
-    value="Continue as a guest"
-    on:click={() => callback(false, 'Continue as a guest')} />
+  <input type="button" value="Continue as a guest" on:click={handleClick} />
 </Interaction>

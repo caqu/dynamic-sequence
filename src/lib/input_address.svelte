@@ -7,7 +7,7 @@
     console.log('Implement this reducer on the parent component');
   };
 
-  onMount(() => {
+  onMount(function() {
     if (
       !window.google ||
       !window.google.maps ||

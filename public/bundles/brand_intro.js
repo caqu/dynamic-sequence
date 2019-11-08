@@ -1091,7 +1091,7 @@ const { Error: Error_1 } = globals;
 
 const file$1 = "src\\lib\\interaction.svelte";
 
-// (75:2) {#if pending}
+// (76:2) {#if pending}
 function create_if_block(ctx) {
 	var current;
 
@@ -1123,7 +1123,7 @@ function create_if_block(ctx) {
 			destroy_component(loadinganimation, detaching);
 		}
 	};
-	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block.name, type: "if", source: "(75:2) {#if pending}", ctx });
+	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block.name, type: "if", source: "(76:2) {#if pending}", ctx });
 	return block;
 }
 
@@ -1154,7 +1154,7 @@ function create_fragment$1(ctx) {
 			if (if_block) if_block.c();
 
 			set_attributes(form, form_data);
-			add_location(form, file$1, 67, 0, 1785);
+			add_location(form, file$1, 68, 0, 1817);
 			dispose = listen_dev(form, "submit", ctx.superHandler);
 		},
 
@@ -1252,12 +1252,13 @@ function create_fragment$1(ctx) {
 function instance$1($$self, $$props, $$invalidate) {
 	
 
-  // handler is a Function that returns a Promise, 
+  // handler is a Function that returns a Promise,
   // if you don't provide one, this default handler resolves immediately.
-  let { handler = () =>
-    new Promise((resolve, reject) => {
+  let { handler = function() {
+    return new Promise((resolve, reject) => {
       resolve();
-    }) } = $$props;
+    });
+  } } = $$props;
 
   let pending = false;
   let move_to_next_question_interval_id;
@@ -1274,7 +1275,7 @@ function instance$1($$self, $$props, $$invalidate) {
   // OLD
   // function handleSubmission(event) {
   //   // Store the Input given by the user to the Prompt.
-  //   use r_inputs.update(I => {
+  //   use r_inputs.update(function(I) {
   //     const n = {};
   //     n[event.target.id] = document.activeElement.value;
   //     return { ...I, ...n };
@@ -1292,7 +1293,7 @@ function instance$1($$self, $$props, $$invalidate) {
   // let _store = JSON.stringify($use r_inputs);
 
   let component;
-  onMount(o => {
+  onMount(function(o) {
     let i = component.querySelector("input");
     if (i && i.nodeName === "INPUT") {
       i.focus();
@@ -1550,7 +1551,7 @@ function create_fragment$4(ctx) {
 			input_1 = element("input");
 			input_1.value = ctx.value;
 			attr_dev(input_1, "placeholder", ctx.placeholder);
-			add_location(input_1, file$4, 50, 0, 1856);
+			add_location(input_1, file$4, 50, 0, 1861);
 		},
 
 		l: function claim(nodes) {
@@ -1594,7 +1595,7 @@ function instance$4($$self, $$props, $$invalidate) {
     console.log('Implement this reducer on the parent component');
   } } = $$props;
 
-  onMount(() => {
+  onMount(function() {
     if (
       !window.google ||
       !window.google.maps ||
@@ -2099,7 +2100,7 @@ const { console: console_1$1 } = globals;
 
 const file$7 = "src\\interaction_components\\brand_intro.svelte";
 
-// (32:0) {#if showing}
+// (34:0) {#if showing}
 function create_if_block$3(ctx) {
 	var h1, h1_intro, h1_outro, current;
 
@@ -2108,7 +2109,7 @@ function create_if_block$3(ctx) {
 			h1 = element("h1");
 			h1.textContent = "BRAND";
 			attr_dev(h1, "class", "svelte-1vjeua6");
-			add_location(h1, file$7, 32, 2, 636);
+			add_location(h1, file$7, 34, 2, 661);
 		},
 
 		m: function mount(target, anchor) {
@@ -2142,7 +2143,7 @@ function create_if_block$3(ctx) {
 			}
 		}
 	};
-	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$3.name, type: "if", source: "(32:0) {#if showing}", ctx });
+	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$3.name, type: "if", source: "(34:0) {#if showing}", ctx });
 	return block;
 }
 
@@ -2208,18 +2209,20 @@ function create_fragment$7(ctx) {
 }
 
 function instance$7($$self, $$props, $$invalidate) {
-  
-  console.log('Brand intro in the house!!');
-  
-  let { callback = () => {} } = $$props;
+
+  console.log("Brand intro in the house!!");
+
+  let { callback = function() {} } = $$props;
   let { props } = $$props;
 
   let showing = false;
-  onMount(() => ($$invalidate('showing', showing = true)));
-  const clearer = setTimeout(() => {
+  onMount(function() {
+    $$invalidate('showing', showing = true);
+  });
+  const clearer = setTimeout(function() {
     callback(true);
   }, 3000);
-  onDestroy(() => {
+  onDestroy(function() {
     clearTimeout(clearer);
   });
 

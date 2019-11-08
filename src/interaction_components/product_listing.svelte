@@ -6,33 +6,37 @@
   export let callback = () => console.log("please define me parent");
 
   // TODO This will be updated to use a commerce backend API
-  const handleClick = event => {
+  const handleClick = function(event) {
     if (event.target.dataset.sku) {
       addToCart(event.target.dataset.sku);
     } else if (event.target.dataset.productid) {
       selectProduct(event.target.dataset.productid);
     }
     // Simulated API network delay
-    setTimeout(() => {
+    setTimeout(function() {
       callback(true);
     }, 600);
   };
-  const addToCart = sku => {
-    props.update(p => ({
-      ...$props,
-      commerceItems: [
-        {
-          sku,
-          quantity: 1
-        }
-      ]
-    }));
+  const addToCart = function(sku) {
+    props.update(function(p) {
+      return {
+        ...$props,
+        commerceItems: [
+          {
+            sku,
+            quantity: 1
+          }
+        ]
+      };
+    });
   };
-  const selectProduct = product_id => {
-    props.update(p => ({
-      ...$props,
-      selected_product: product_id
-    }));
+  const selectProduct = function(product_id) {
+    props.update(function(p) {
+      return {
+        ...$props,
+        selected_product: product_id
+      };
+    });
   };
 </script>
 

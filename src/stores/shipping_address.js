@@ -64,7 +64,7 @@ export function set_shipping_address(place) {
   });
 }
 
-shipping_address.subscribe(o => {
+shipping_address.subscribe(function(o) {
   // const { oneline, ...oClean } = o;
   sessionStorage.setItem("shipping_address", JSON.stringify(o));
 });

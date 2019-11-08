@@ -4,6 +4,10 @@
 
   export let callback;
   export let props;
+
+  function handleClick() {
+    callback(true);
+  }
 </script>
 
 <style>
@@ -29,16 +33,13 @@
     prompts. The goal is to maximize the customer's focus, minimize unnecessary
     interactions and increase the speed needed to complete a given task.
     <!-- 
-      On the
-    bottom left you can see the application state, in essence, the results of
-    previous interactions between brand and customer. On the bottom left you can
-    preview what's coming up in the sequence. The sequence will mutate depending
-    on the state. 
-    For example, a donation does not require a shipping address, and a t-shirt
-    requires an extra step to select color and size.
-    
+    On the bottom left you can see the application state, in essence, the
+    results of previous interactions between brand and customer. On the bottom
+    left you can preview what's coming up in the sequence. The sequence will
+    mutate depending on the state. For example, a donation does not require a
+    shipping address, and a t-shirt requires an extra step to select color and
+    size. 
     -->
-
   </p>
-  <button on:click={() => callback(true)}>Continue</button>
+  <button on:click={handleClick}>Continue</button>
 </div>

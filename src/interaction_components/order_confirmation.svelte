@@ -1,14 +1,14 @@
 <script>
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
-  
+
   export let props;
   export let callback;
-  
-  const handler = event => {
+
+  const handler = function(event) {
     console.log(event);
     callback(true);
-  }
+  };
 </script>
 
 <Interaction>
@@ -25,7 +25,7 @@
     type="submit"
     value="Buy another one"
     path="happy"
-    on:click={() => {
+    on:click={function() {
       sessionStorage.clear();
     }} />
 </Interaction>

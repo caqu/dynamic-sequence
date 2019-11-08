@@ -1,7 +1,7 @@
 <script>
   export let callback;
 
-  const handler = event => {
+  const handler = function(event) {
     debugger;
     callback(true);
   };

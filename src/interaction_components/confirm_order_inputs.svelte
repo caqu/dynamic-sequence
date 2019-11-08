@@ -5,7 +5,7 @@
   export let props;
   export let callback;
   
-  const handler = event => {
+  const handler = function(event) {
     console.log(event);
     callback(true);
   }

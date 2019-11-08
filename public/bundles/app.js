@@ -1036,7 +1036,7 @@ var app = (function () {
 
     const file = "src\\app.svelte";
 
-    // (241:0) {:else}
+    // (246:0) {:else}
     function create_else_block(ctx) {
     	var div, t0, t1_value = ctx.$main_sequence[0] + "", t1, t2;
 
@@ -1049,7 +1049,7 @@ var app = (function () {
     			set_style(div, "color", "red");
     			set_style(div, "padding", "1rem");
     			set_style(div, "background", "white");
-    			add_location(div, file, 241, 2, 7181);
+    			add_location(div, file, 246, 2, 7253);
     		},
 
     		m: function mount(target, anchor) {
@@ -1074,11 +1074,11 @@ var app = (function () {
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block.name, type: "else", source: "(241:0) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block.name, type: "else", source: "(246:0) {:else}", ctx });
     	return block;
     }
 
-    // (231:0) {#if $ComponentRef}
+    // (236:0) {#if $ComponentRef}
     function create_if_block(ctx) {
     	var t, switch_instance_anchor, current;
 
@@ -1154,7 +1154,7 @@ var app = (function () {
     			if (switch_instance) destroy_component(switch_instance, detaching);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block.name, type: "if", source: "(231:0) {#if $ComponentRef}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block.name, type: "if", source: "(236:0) {#if $ComponentRef}", ctx });
     	return block;
     }
 
@@ -1250,6 +1250,7 @@ var app = (function () {
       // Separate repos for Activities
 
       const { fallback, sequence } = parseq;
+
       // AST: JSON to functions Editing a program in the browser.
       const initial_sequence = [
         // "Menu",
@@ -1268,30 +1269,26 @@ var app = (function () {
       ];
       const main_sequence = writable(initial_sequence); validate_store(main_sequence, 'main_sequence'); component_subscribe($$self, main_sequence, $$value => { $main_sequence = $$value; $$invalidate('$main_sequence', $main_sequence); });
       const loaded_widgets = writable({}); validate_store(loaded_widgets, 'loaded_widgets'); component_subscribe($$self, loaded_widgets, $$value => { $loaded_widgets = $$value; $$invalidate('$loaded_widgets', $loaded_widgets); });
-      const widget_sequence = derived(
-        [main_sequence, loaded_widgets],
-        ({ 0: main_sequence, 1: loaded_widgets }) => {
-          return main_sequence.map(widget_name => {
-            if ($loaded_widgets[widget_name]) {
-              return WidgetFactory(widget_name);
-            } else {
-              WidgetLoader(widget_name);
-              
-              return function(callback, value) {
-                console.log("Placeholder requestor function");
-              };
-            }
-          });
-        }
-      );
+      const widget_sequence = derived([main_sequence, loaded_widgets], function({
+        0: main_sequence,
+        1: loaded_widgets
+      }) {
+        return main_sequence.map(function(widget_name) {
+          if ($loaded_widgets[widget_name]) {
+            return WidgetFactory(widget_name);
+          } else {
+            WidgetLoader(widget_name);
+
+            return function(callback, value) {
+              console.log("Placeholder requestor function");
+            };
+          }
+        });
+      });
 
       // Put widget instances into Parseq
-      widget_sequence.subscribe(ws => {
+      widget_sequence.subscribe(function(ws) {
         sequence(ws)(show_end_of_sequence, {});
-        // For example sequence(initial_sequence_array)("End");
-        // sequence(ws)(() => {
-        //   console.log("The top-level sequence should not end.");
-        // });
       });
       const ComponentRef = writable(); validate_store(ComponentRef, 'ComponentRef'); component_subscribe($$self, ComponentRef, $$value => { $ComponentRef = $$value; $$invalidate('$ComponentRef', $ComponentRef); });
 
@@ -1301,17 +1298,17 @@ var app = (function () {
         const file_name = component_list[bundle_name];
         // For example /bundles/brand_intro.js
         return import(`/bundles/${file_name}.js`)
-          .then(loaded_component => {
+          .then(function(loaded_component) {
             // debugger;
             if (loaded_component) {
-              loaded_widgets.update(obj => {
+              loaded_widgets.update(function(obj) {
                 const newObj = {};
                 newObj[bundle_name] = loaded_component;
                 return Object.assign({}, obj, newObj);
               });
             }
           })
-          .catch(message => {
+          .catch(function(message) {
             console.log("Failed to fetch activity", message);
           });
       }

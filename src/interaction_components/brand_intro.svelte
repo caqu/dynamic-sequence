@@ -3,18 +3,20 @@
   import { fade } from "svelte/transition";
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
-  
-  console.log('Brand intro in the house!!');
-  
-  export let callback = () => {};
+
+  console.log("Brand intro in the house!!");
+
+  export let callback = function() {};
   export let props;
 
   let showing = false;
-  onMount(() => (showing = true));
-  const clearer = setTimeout(() => {
+  onMount(function() {
+    showing = true;
+  });
+  const clearer = setTimeout(function() {
     callback(true);
   }, 3000);
-  onDestroy(() => {
+  onDestroy(function() {
     clearTimeout(clearer);
   });
 </script>
