@@ -2,11 +2,11 @@
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
-  export let callback;
+  export let decision;
   export let props;
-  
+
   function handleClick () {
-    callback(true);
+    decision(true);
   }
 </script>
 

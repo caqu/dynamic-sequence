@@ -4,7 +4,7 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
-  export let callback = function() {
+  export let decision = function() {
     console.log("please define me parent");
   };
 
@@ -13,13 +13,13 @@
   function handler(event) {
     setTimeout(function() {
       last_name_reducer(event.target.elements.last_name.value);
-      callback(true);
+      decision(true);
     }, 300);
     // TODO Can we re-write it with `this`?
     this.elements.first_name.value;
     if (this.elements.first_name.value) {
       first_name_reducer(this.elements.first_name.value);
-      callback(true);
+      decision(true);
     } else {
       falsy_name_error = true;
     }

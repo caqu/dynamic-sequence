@@ -3,7 +3,7 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props; // a writable store
-  export let callback = function() {
+  export let decision = function() {
     console.log("please define me parent");
   };
 
@@ -16,7 +16,7 @@
     }
     // Simulated API network delay
     setTimeout(function() {
-      callback(true);
+      decision(true);
     }, 600);
   };
   const addToCart = function(sku) {

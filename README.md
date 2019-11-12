@@ -20,7 +20,7 @@ Conceptually based on parseq .
 
 ## Activities
 
-Formerly known as Interaction, an Activity is made up of a prompt, input controls, custom logic, and a callback.
+Formerly known as Interaction, an Activity is made up of a prompt, input controls, custom logic, and a decision.
 
 ## Prompt
 ...
@@ -28,8 +28,11 @@ Formerly known as Interaction, an Activity is made up of a prompt, input control
 ## Inputs
 ...
 
-## Callback
-...
+## Decision (callback)
+The parent Activity provides a `decision` attribute with a function as value (a callback) to the child Activity.
+When the child Activity completes, it invokes the decision function (like a callback) with 2 parameters.
+1- Value. `undefined` to signify a failed activity or an Object of any type which is the result of the activity.
+2- Reason. An optional String used when activity failed to explain why it failed.
 
 ## Concepts and practical use cases
 (work in progress)
@@ -77,7 +80,7 @@ TODO Explore whether we need to load activities into an iframe in order to suppo
 
 ## Questions and Answers
 - Are you suggesting that every Activity has it's own server? Yeah, maybe, yeah... ?
-- How do we handle relationships between activity? Through the callback, the activity gives back control to it's parent.
+- How do we handle relationships between activity? Through the decision, the activity gives back control to it's parent.
 - How do we do input validation? It's up to each activity. Each activity can decide what is best, for example server-based validation, jQuery validate, native browser validation can all be good choices in different contexts.
 - How do we know when we can sync with the server? Say I1 username, I2 password, now check with server. Handler?
 - Accessibility, use Tab key to navigate? Arrow keys?

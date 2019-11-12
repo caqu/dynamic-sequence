@@ -6,7 +6,7 @@
 
   console.log("Brand intro in the house!!");
 
-  export let callback = function() {};
+  export let decision = function() {};
   export let props;
 
   let showing = false;
@@ -14,7 +14,7 @@
     showing = true;
   });
   const clearer = setTimeout(function() {
-    callback(true);
+    decision(true);
   }, 3000);
   onDestroy(function() {
     clearTimeout(clearer);

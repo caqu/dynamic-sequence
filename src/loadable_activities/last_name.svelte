@@ -3,13 +3,13 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
-  export let callback;
+  export let decision;
 
   const handler = function(event) {
     console.log(event.target);
     setTimeout(function() {
       last_name_reducer(event.target.elements.last_name.value);
-      callback(true);
+      decision(true);
     }, 3000);
   };
   function last_name_reducer(last_name) {

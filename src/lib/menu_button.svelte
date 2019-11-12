@@ -1,9 +1,9 @@
 <script>
-  export let callback;
+  export let decision;
 
   const handler = function(event) {
     debugger;
-    callback(true);
+    decision(true);
   };
 </script>
 

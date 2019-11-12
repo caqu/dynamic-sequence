@@ -5,10 +5,10 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
-  export let callback;
+  export let decision;
 
   function handler() {
-    callback(true);
+    decision(true);
   }
 
   let product_data;

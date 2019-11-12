@@ -3,18 +3,18 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props; // a writable store
-  export let callback = function() {
+  export let decision = function() {
     console.log("please define me in parent");
   };
 
   const selectColor = function(color) {
-    callback(true);
+    decision(true);
     props.update(function(p) {
       return { ...$props, product: color };
     });
   };
   const addToCart = function(size) {
-    callback(true);
+    decision(true);
     props.update(function(p) {
       return { ...$props, product: size };
     });

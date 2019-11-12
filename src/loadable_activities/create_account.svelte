@@ -3,11 +3,11 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
-  export let callback;
+  export let decision;
 
   const handler = function(event) {
     console.log(event);
-    callback(true);
+    decision(true);
   };
 </script>
 

@@ -1,4 +1,4 @@
-import app from './app_simplified.svelte';
+import app from './app.svelte';
 
 export default new app({
   target: document.getElementById('actor')

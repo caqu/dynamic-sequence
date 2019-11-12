@@ -3,14 +3,14 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
-  export let callback;
+  export let decision;
 
   const handler = function(event) {
     console.log(event);
-    callback(true);
+    decision(true);
   };
   const handleClick = function() {
-    callback(false, "Continue as a guest");
+    decision(false, "Continue as a guest");
   };
 </script>
 
