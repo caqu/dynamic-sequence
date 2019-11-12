@@ -1,36 +1,41 @@
-import svelte from "rollup-plugin-svelte";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import livereload from "rollup-plugin-livereload";
-import { terser } from "rollup-plugin-terser";
-import component_list from "./src/component_list";
-import pkg from "./package.json";
+import svelte from 'rollup-plugin-svelte';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import livereload from 'rollup-plugin-livereload';
+import { terser } from 'rollup-plugin-terser';
+import component_list from './src/component_list';
+import pkg from './package.json';
 
 const production = !process.env.ROLLUP_WATCH;
 
 let next_live_reload_port = 35729;
+
+// Each Activity (Svelte file) will be transpiled into its own JS file.
 let output_list = Object.keys(component_list).map(name => {
   const file_name = component_list[name];
-  // input_path: "src/activities/" + file_name + ".svelte"
-  // input_path: "src/activities/" + file_name + ".js"
   return {
-    // input: "src/main.js",
-    input: "src/activities/" + file_name + ".svelte",
+    input: 'src/activities/' + file_name + '.svelte',
     output: {
-      // sourcemap: true,
-      file: pkg.module,
-      format: "es",
+      format: 'es',
       name: file_name,
-      file: "public/bundles/" + file_name + ".js"
+      file: 'public/bundles/' + file_name + '.js'
     },
     plugins: [
       svelte({
         // enable run-time checks when not in production
         dev: !production,
+
+        // You can restrict which files are compiled
+        // using `include` and `exclude`
+        // include: 'src/components/**/*.svelte',
+
+        // load this as a Web Component, like <my-input />
+        // customElement: true
+
         // we'll extract any component CSS out into
         // a separate file — better for performance
-        css: css => {
-          css.write("public/bundle.css");
+        css: function(css) {
+          css.write('public/bundles/' + file_name + '.css');
         }
       }),
 
@@ -42,17 +47,17 @@ let output_list = Object.keys(component_list).map(name => {
       resolve({
         browser: true,
         dedupe: importee =>
-          importee === "svelte" || importee.startsWith("svelte/")
+          importee === 'svelte' || importee.startsWith('svelte/')
       }),
       // commonjs(),
 
       // Watch the `public` directory and refresh the
       // browser on changes when not in production
-      !production &&
-        livereload({
-          watch: "public",
-          port: next_live_reload_port++
-        }),
+      // if (!production) {
+      //   livereload({
+      //     watch: 'public',
+      //     port: next_live_reload_port++
+      //   }), }
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify
@@ -64,14 +69,14 @@ let output_list = Object.keys(component_list).map(name => {
   };
 });
 
-// Main App
+// Config for Main Application that loads first and then controls the flow of Activities
 output_list.push({
-  input: "src/main.js",
+  input: 'src/main.js',
   output: {
     sourcemap: true,
-    format: "iife",
-    name: "app",
-    file: "public/bundles/app.js"
+    format: 'iife',
+    name: 'app',
+    file: 'public/bundles/main.js'
   },
   plugins: [
     svelte({
@@ -80,7 +85,7 @@ output_list.push({
       // we'll extract any component CSS out into
       // a separate file — better for performance
       css: css => {
-        css.write("public/bundle.css");
+        css.write('public/bundle.css');
       }
     }),
 
@@ -92,7 +97,7 @@ output_list.push({
     resolve({
       browser: true,
       dedupe: importee =>
-        importee === "svelte" || importee.startsWith("svelte/")
+        importee === 'svelte' || importee.startsWith('svelte/')
     }),
     commonjs(),
 
@@ -100,8 +105,8 @@ output_list.push({
     // browser on changes when not in production
     !production &&
       livereload({
-        watch: "public",
-        port: next_live_reload_port++
+        watch: 'public',
+        port: next_live_reload_port
       }),
 
     // If we're building for production (npm run build
