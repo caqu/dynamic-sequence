@@ -4,8 +4,8 @@ export default {
   },
   initial_control_flow: [
     // "Menu",
-    'Brand intro'
-    // "Explain experience",
+    'Brand intro',
+    'Explain experience'
     // "Product listing",
     // "Product variant selector",
     // "Explain experience part 2",

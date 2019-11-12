@@ -3,8 +3,8 @@
   import { writable, derived } from "svelte/store";
   import parseq from "./lib/parseq.js";
   import Activities from "./bundled_activities"; // find them at index.js
-  import MenuButton from "./lib/menu_button.svelte";
   import activity_list from "./activity_list";
+  import MenuButton from "./lib/menu_button.svelte";
   import program from "./program.js";
 
   import Editor from "./editor.svelte";
@@ -28,6 +28,7 @@
   const step_thru = function(arr) {
     const widget_array = string_array_to_widget_array(arr);
     debugger;
+
     return parseq.sequence(widget_array)(end, {});
   };
 
@@ -36,39 +37,50 @@
   let decision;
 
   function WidgetLoader(callback, bundle_name) {
-    debugger;
     const file_name = activity_list[bundle_name];
-    // For example /bundles/brand_intro.js
-    return import(`/bundles/${file_name}.js`)
-      .then(callback)
-      .catch(function(message) {
-        console.log("Failed to fetch activity", message);
-      });
+    return function(callback, bundle_name) {
+      // For example /bundles/brand_intro.js
+      import(`/bundles/${file_name}.js`)
+        .then(function(m) {
+          debugger;
+          callback(m);
+        })
+        .catch(function(message) {
+          console.log("Failed to fetch activity", message);
+        });
+    };
   }
 
   function WidgetFactory(bundle_name) {
-
-    return function component_requestor(cb, output_from_caller) {
-      function mount(component) {
-        ComponentRef.set(component); // eek
-        decision = cb; // eek
-      }
-      function afterLoading(_module) {
-        // TODO is there a better way to detect a Module?
-        if (typeof _module.default === "function") {
-          loaded_widgets.update(function(obj) {
-            const newObj = {};
-            newObj[bundle_name] = _module;
-            return Object.assign({}, obj, newObj);
-          });
-        }
-      }
-      if ($loaded_widgets[bundle_name] === undefined) {
-        WidgetLoader(afterLoading, bundle_name);
-      } else {
-        mount($loaded_widgets[bundle_name]);
-      }
-    };
+    debugger;
+    // if Activities has it, put it into loaded widgets and use it
+    // else load it, then put it into loaded widgets and use it
+    const component_name = activity_list[bundle_name];
+    if (Activities[bundle_name] !== undefined) {
+      loaded_widgets.update(function(ws) {
+        debugger;
+        const newObj = {};
+        newObj[bundle_name] = Activities[bundle_name];
+        const r = Object.assign({}, ws, newObj);
+        return r;
+      });
+    }
+    if ($loaded_widgets[bundle_name] !== undefined) {
+      return component_requestor;
+    } else {
+      debugger;
+      return parseq.sequence([
+        WidgetLoader(component_requestor, bundle_name),
+        component_requestor
+      ])(function show() {
+        debugger;
+      });
+    }
+    function component_requestor(callback, value) {
+      debugger;
+      ComponentRef.set($loaded_widgets[bundle_name]); // eek, global
+      decision = cb; // eek, global
+    }
   }
   function end(value, reason) {
     // Our program should never formally end,
@@ -79,7 +91,7 @@
   }
 
   onMount(function() {
-    console.log("On mount loading ", $main_sequence[0]);
+    console.log("On mount loading ", $main_sequence);
     step_thru($main_sequence);
   });
 

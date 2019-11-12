@@ -54,6 +54,11 @@ In the prototype the Interaction Stream is shown in a stand-alone page, but the 
 
 For example, setting Country, changes Prompt to State or Province.
 
+## Eventualy
+third(second(first(initial_value)));
+first(second, value);
+
+
 ## Constraints
 In this project, we are following Douglas Crockford recommendations on The Good Part and The Better Parts and we are going to avoid using,  `new`, `this`, `Promise`, among other things. Instead this project intends to make use of functional programming concepts. If you're new to this, a promising place to start is https://www.youtube.com/watch?v=Aa_OWn03mDo
 
