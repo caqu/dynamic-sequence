@@ -51,6 +51,15 @@ In the prototype the Interaction Stream is shown in a stand-alone page, but the 
 
 For example, setting Country, changes Prompt to State or Province.
 
+## Constraints
+In this project, we are following Douglas Crockford recommendations on The Good Part and The Better Parts and we are going to avoid using,  `new`, `this`, `Promise`, among other things. Instead this project intends to make use of functional programming concepts. If you're new to this, a promising place to start is https://www.youtube.com/watch?v=Aa_OWn03mDo
+
+## Actor Model in practice
+An Activity is based on the Actor model https://en.wikipedia.org/wiki/Actor_model
+An Activity can:
+- Send messages to other Activities; (passing state values?)
+- Create new Activities; (put them in the sequence)
+- Designate the behavior to be used for the next message it receives. (control flow:sequence)
 
 ## References and inspirations
 - https://www.youtube.com/watch?v=DxnYQRuLX7Q
