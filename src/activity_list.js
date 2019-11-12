@@ -1,6 +1,8 @@
 // Component name, File name
 export default {
-  "Brand intro": "brand_intro"
+  "Brand intro": "brand_intro",
+  "Explain experience": "explain_experience",
+  "Explain experience 2": "explain_experience_2"
 };
 // "product_listing",
 // "product_variant_selector",
@@ -17,8 +19,6 @@ export default {
 // "sign_in_or_guest",
 // "username",
 // "verify_email",
-// "explain_experience",
-// "explain_experience_2",
 // "review_cart",
 // "apply_promo_code",
 // "select_account_mode",

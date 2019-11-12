@@ -3,7 +3,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import component_list from './src/component_list';
+import activity_list from './src/activity_list';
 import pkg from './package.json';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -11,10 +11,10 @@ const production = !process.env.ROLLUP_WATCH;
 let next_live_reload_port = 35729;
 
 // Each Activity (Svelte file) will be transpiled into its own JS file.
-let output_list = Object.keys(component_list).map(name => {
-  const file_name = component_list[name];
+let output_list = Object.keys(activity_list).map(name => {
+  const file_name = activity_list[name];
   return {
-    input: 'src/activities/' + file_name + '.svelte',
+    input: 'src/loadable_activities/' + file_name + '.svelte',
     output: {
       format: 'es',
       name: file_name,
