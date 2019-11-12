@@ -2,13 +2,11 @@
   import { onMount, setContext } from "svelte";
   import { writable, derived } from "svelte/store";
   import parseq from "./lib/parseq.js";
-  // import I from "./activities";
+  import Activities from "./activities";
   import MenuButton from "./lib/menu_button.svelte";
-  import ResultsVisualizer from "./lib/results_visualizer.svelte";
-  import RulesVisualizer from "./lib/rules_visualizer.svelte";
-  import ProgramVisualizer from "./lib/program_visualizer.svelte";
-  import component_list from "./component_list";
-  // Separate repos for Activities
+  import activity_list from "./activity_list";
+
+  import Editor from "./editor.svelte";
 
   const { fallback, sequence } = parseq;
   const string_to_widget = function(str) {
@@ -93,33 +91,34 @@
   ]);
   const main_sequence = writable(initial_sequence);
   const loaded_widgets = writable({});
-  const widget_sequence = derived([main_sequence, loaded_widgets], function({
-    0: main_sequence,
-    1: loaded_widgets
-  }) {
-    return main_sequence.map(function(widget_name) {
-      if ($loaded_widgets[widget_name]) {
-        return WidgetFactory(widget_name);
-      } else {
-        WidgetLoader(widget_name);
+  // TODO get rid of widget_sequence concept, one activity at a time.
+  // const widget_sequence = derived([main_sequence, loaded_widgets], function({
+  //   0: main_sequence,
+  //   1: loaded_widgets
+  // }) {
+  //   return main_sequence.map(function(widget_name) {
+  //     if ($loaded_widgets[widget_name]) {
+  //       return WidgetFactory(widget_name);
+  //     } else {
+  //       WidgetLoader(widget_name);
 
-        return function(callback, value) {
-          console.log("Placeholder requestor function");
-        };
-      }
-    });
-  });
+  //       return function(callback, value) {
+  //         console.log("Placeholder requestor function");
+  //       };
+  //     }
+  //   });
+  // });
 
   // Put widget instances into Parseq
-  widget_sequence.subscribe(function(ws) {
-    sequence(ws)(show_end_of_sequence, {});
-  });
+  // widget_sequence.subscribe(function(ws) {
+  //   sequence(ws)(show_end_of_sequence, {});
+  // });
   const ComponentRef = writable();
 
   let callback;
 
   function WidgetLoader(bundle_name) {
-    const file_name = component_list[bundle_name];
+    const file_name = activity_list[bundle_name];
     // For example /bundles/brand_intro.js
     return import(`/bundles/${file_name}.js`)
       .then(function(loaded_component) {
@@ -140,7 +139,7 @@
   function WidgetFactory(bundle_name) {
     console.log("WidgetFactory calls component_requestor", bundle_name);
     return function component_requestor(cb, output_from_caller) {
-      // ComponentRef.set(I[name]);
+      // ComponentRef.set(Activities[name]);
       // TODO These "globals" are a bit of a problem...
 
       ComponentRef.set($loaded_widgets[bundle_name]);
@@ -151,77 +150,24 @@
     // Our program may never "ends",
     // rather it loop onto itself from Order Confirmation
     // to Continue Shopping.
+    // TODO if the main mechanism is the fallback,
+    // maybe "ending" is main "error" screen that let's us start over.
   }
   const state = writable({
     // initial_key: "initial_value"
   });
 
-  // function go_to(event) {
-  //   const component_name = this.innerText;
-  //   console.log(component_name);
-  //   // ComponentRef.set(I[component_name]);
-  //   if (loaded_widgets[bundle_name]) {
-  //     ComponentRef.set(loaded_widgets[bundle_name]);
-  //   } else {
-  //     console.log(bundle_name, " has not loaded yet.");
-  //   }
-  // }
-
-  // function x(s) {
-  //   console.log("get x", s, interactions);
-  //   if (typeof interactions[s] === "function") return interactions[s];
-  //   // if (components[s]) return components[s];
-  //   throw new Error(`Please create interaction "${s}"`);
-  // }
+  onMount(function() {
+    // State: what's happening?
+    // Rules: loop thru predicates, invoke transformations
+    // Control flow: what's next?
+    // Render: 1 child component
+  });
+  const editor_props = { debugging, state, rule_set, main_sequence, go_to };
 </script>
 
 <style>
-  /* TODO these globals need to be scoped */
-  /* :global(form) {
-    position: absolute;
-    left: auto;
-    right: auto;
-    padding: 1rem;
-    max-width: 40rem;
-    display: none;
-    transform: translateY(100vh);
-  }
-  :global(form.active) {
-    display: block;
-    animation: scroll-in ease-out 0.6s;
-    transform: translateY(0vh);
-  } */
-  /* :global(form.complete) {
-    display: block;
-    animation: scroll-out ease-out 0.6s;
-    transform: translateY(-100vh);
-  } */
-  /* @keyframes scroll-in {
-    0% {
-      transform: translateY(100vh);
-    }
-    1% {
-      display: block;
-    }
-    100% {
-      display: block;
-      transform: translateY(0);
-    }
-  }
-  @keyframes scroll-out {
-    0% {
-      display: block;
-      transform: translateY(0);
-    }
-    99% {
-      display: block;
-    }
-    100% {
-      transform: translateY(-100vh);
-      /* rotateX(90deg) translateY(-100%) * /
-      display: none;
-    }
-  } */
+
 </style>
 
 <!--
@@ -234,12 +180,6 @@ import SvelteComponent from "svelte_component";
  -->
 
 {#if $ComponentRef}
-  <!-- TODO https://www.brianstorti.com/the-actor-model/
-this explore if this needs to be an iframe  so that we can
-let it crash, and have this app refresh the contents
-to stable state.
-Or an import(file.js)?
- -->
   Did you load yet?
   <svelte:component this={$ComponentRef} />
   <!-- <svelte:component this={$ComponentRef} {callback} props={state} /> -->
@@ -249,8 +189,4 @@ Or an import(file.js)?
   </div>
 {/if}
 
-<!-- if debugging -->
-<!-- <ResultsVisualizer {state} />
-<RulesVisualizer {rule_set} />
-<ProgramVisualizer {main_sequence} {go_to} /> -->
-<!-- fi debugging -->
+<Editor props={editor_props} />

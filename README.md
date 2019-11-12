@@ -61,6 +61,10 @@ An Activity can:
 - Create new Activities; (put them in the sequence)
 - Designate the behavior to be used for the next message it receives. (control flow:sequence)
 
+See https://www.brianstorti.com/the-actor-model/
+
+TODO Explore whether we need to load activities into an iframe in order to support crash recovery. In app.svelte, maybe wrap <svelte:component this={component} /> in an iFrame?
+
 ## References and inspirations
 - https://www.youtube.com/watch?v=DxnYQRuLX7Q
 - https://github.com/douglascrockford/parseq
