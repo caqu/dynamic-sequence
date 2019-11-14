@@ -33,7 +33,11 @@
    * 2- load the next activity (if needed)
    * 3- show the next activity
    */
-  const decision = function next_activity() {
+  const decision = function decision(value, reason) {
+    next_activity();
+  }
+
+  const next_activity = function next_activity() {
     activity_index += 1;
     const name = $main_sequence[activity_index];
     const activity = bundled_activities[name];
@@ -82,7 +86,7 @@
   onMount(function handle_mount() {
     console.log("On mount loading ", $main_sequence);
     console.log("ComponentRef ", $ComponentRef);
-    decision();
+    next_activity();
     return function handle_dismount() {};
   });
 

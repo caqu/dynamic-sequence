@@ -6,6 +6,12 @@
   export let props;
 
   function handleClick() {
+    props.update(function(props) {
+      return {
+        ...props,
+        explain_experience: "done!"
+      };
+    });
     decision(true);
   }
 </script>
