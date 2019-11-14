@@ -9,10 +9,24 @@
     props.update(function(props) {
       return {
         ...props,
-        explain_experience: "done!"
+        explain_experience: true
       };
     });
-    decision(true);
+    debugger;
+    const new_rule = {
+      predicate: function(state) {
+        return state.explain_experience === true;
+      },
+      consequence: function(main_sequence) {
+        debugger;
+        main_sequence.update(function(ms) {
+          return [...ms, "Explain experience 2"];
+        });
+        // TODO could return true / false if it was successful at editing the main_sequence
+        return undefined;
+      }
+    };
+    decision([new_rule]);
   }
 </script>
 

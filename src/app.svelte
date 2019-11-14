@@ -34,8 +34,36 @@
    * 3- show the next activity
    */
   const decision = function decision(value, reason) {
+    // if value is a rule_set
+    if (is_rule_set(value)) {
+      debugger;
+      // Concat rules
+      rule_set.update(function(rules) {
+        const concatenated = [...rules, ...value];
+        debugger;
+        return concatenated;
+      });
+    }
+    process_rules();
     next_activity();
-  }
+  };
+
+  const is_rule_set = function is_rule_set(rule_set) {
+    return (
+      Array.isArray(rule_set) &&
+      rule_set[0] !== undefined &&
+      typeof rule_set[0].predicate === "function"
+    );
+  };
+
+  const process_rules = function process_rules() {
+    $rule_set.forEach(function process_rule(rule) {
+      debugger;
+      if (rule.predicate($state)) {
+        rule.consequence(main_sequence);
+      }
+    });
+  };
 
   const next_activity = function next_activity() {
     activity_index += 1;
@@ -73,6 +101,11 @@
     const file_name = activity_list[bundle_name];
     const bundle_address = `/bundles/${file_name}.js`;
     log("Will attempt to load ", file_name, "at", bundle_address);
+    if (file_name === undefined) {
+      throw new Error(
+        'Please configure "' + bundle_name + '" in activity_list.js'
+      );
+    }
     // For example /bundles/brand_intro.js
     import(bundle_address)
       .then(function(m) {
@@ -100,7 +133,6 @@
   }} />
 
 {#if $ComponentRef !== undefined}
-  <!-- Did you load yet? {bundled_activities} -->
   <svelte:component this={$ComponentRef} {decision} props={state} />
 {:else}
   <div style="color:red;padding:1rem;background:white">

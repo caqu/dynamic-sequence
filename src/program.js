@@ -5,7 +5,7 @@ export default {
   initial_control_flow: [
     // "Menu",
     'Brand intro',
-    'Explain experience'
+    'Explain experience' // This activity adds an activity
     // "Product listing",
     // "Product variant selector",
     // "Explain experience part 2",
@@ -19,17 +19,22 @@ export default {
   ],
   initial_rule_set: [
     {
-      predicate: 'customer has not seen explanation',
-      reflow: 'add Explain experience next'
-    },
-    {
-      predicate: 'any cart.item is shippable',
-      reflow: 'add shipping address before Select payment method'
-    },
-    {
-      predicate:
-        'any cart.item is rated mature and age verification is missing',
-      reflow: 'add age verification next'
+      description:
+        'Customer has already seen "Explain experience", add Explain experience next',
+      predicate: () => true,
+      consequence: main_sequence =>
+        main_sequence.update(function(ms) {
+          return [...ms, 'Always blue'];
+        })
+      // },
+      // {
+      //   predicate: 'any cart.item is shippable',
+      //   consequence: 'add shipping address before Select payment method'
+      // },
+      // {
+      //   predicate:
+      //     'any cart.item is rated mature and age verification is missing',
+      //   consequence: 'add age verification next'
     }
   ]
 };

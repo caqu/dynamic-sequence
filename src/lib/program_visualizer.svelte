@@ -23,7 +23,7 @@
 </style>
 
 <div class="program_visualizer">
-  <div>Control flow: Sequence</div>
+  <div>Control flow</div>
   <ol style="margin:0">
     {#each $main_sequence as w}
       <li out:slide>
