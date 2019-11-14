@@ -1,8 +1,12 @@
+/**
+ * The modules listed on this list include both bundled and independent modules.
+ * Independent modules can be loaded asynchrounsly.
+ */
 // Component name, File name
 export default {
-  "Brand intro": "brand_intro",
-  "Explain experience": "explain_experience",
-  "Explain experience 2": "explain_experience_2"
+  'Brand intro': 'brand_intro',
+  'Explain experience': 'explain_experience',
+  'Explain experience 2': 'explain_experience_2'
 };
 // "product_listing",
 // "product_variant_selector",

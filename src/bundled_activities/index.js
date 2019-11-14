@@ -1,3 +1,10 @@
+/**
+ * The modules listed in this file are available for bundling
+ * at the time of the build process.
+ * These modules can be imported at the top and will be added into the bundle/*.js file
+ * so they can be loaded at the same time as the parent module.
+ */
+
 // import product_listing from './product_listing.svelte';
 // import product_variant_selector from './product_variant_selector.svelte';
 
