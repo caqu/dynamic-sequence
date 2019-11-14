@@ -26,7 +26,11 @@ export default {
       },
       consequence: main_sequence =>
         main_sequence.update(function(ms) {
-          return [...ms, 'Explain rule set'];
+          if (ms.includes('Explain rule set')) {
+            return ms;
+          } else {
+            return [...ms, 'Explain rule set'];
+          }
         })
       // },
       // {
