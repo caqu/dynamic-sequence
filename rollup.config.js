@@ -23,7 +23,7 @@ let output_list = Object.keys(activity_list).map(name => {
     plugins: [
       svelte({
         // enable run-time checks when not in production
-        dev: !production,
+        dev: !production
 
         // You can restrict which files are compiled
         // using `include` and `exclude`
@@ -34,9 +34,10 @@ let output_list = Object.keys(activity_list).map(name => {
 
         // we'll extract any component CSS out into
         // a separate file — better for performance
-        css: function(css) {
-          css.write('public/bundles/' + file_name + '.css');
-        }
+        // no we won't bundle the free-standing modules with the CSS.
+        // css: function(css) {
+        //   css.write('public/bundles/' + file_name + '.css');
+        // }
       }),
 
       // If you have external dependencies installed from

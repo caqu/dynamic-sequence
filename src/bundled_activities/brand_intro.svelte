@@ -28,9 +28,10 @@
     margin: 0;
     padding: 0;
     position: absolute;
+    font-family: fantasy;
   }
 </style>
 
 {#if showing}
-  <h1 in:fade out:fade>BRAND</h1>
+  <h1 in:fade out:fade>HUM</h1>
 {/if}

@@ -6,6 +6,8 @@
 export default {
   'Brand intro': 'brand_intro',
   'Explain experience': 'explain_experience',
+  'Explain loaded activities': 'explain_loaded_activities',
+  'Explain rule set': 'explain_rule_set',
   'Explain experience 2': 'explain_experience_2'
 };
 // "product_listing",

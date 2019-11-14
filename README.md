@@ -34,6 +34,17 @@ When the child Activity completes, it invokes the decision function (like a call
 1- Value. `undefined` to signify a failed activity or an Object of any type which is the result of the activity.
 2- Reason. An optional String used when activity failed to explain why it failed.
 
+## Rules
+An array of Rule objects, each containing a human-readable `description` (optional),
+a `predicate` and `consequence` functions.
+
+### Predicate of a Rule
+A function that takes the entire state object (TODO in read-only mode) and returns a Boolean. For example, `state => state.user_accepted_cookie_warning === true`
+
+### Consequence of a Rule
+A function that transforms the Control Flow of the Application. It takes the `main_sequence` Store (TODO this may change to control_flow Object) and should invoke update() to transform it.
+
+
 ## Concepts and practical use cases
 (work in progress)
 The real beauty here is the atomicity. Just as Tweets are composed into Feeds, these atomic Interactions can be:
@@ -54,7 +65,7 @@ In the prototype the Interaction Stream is shown in a stand-alone page, but the 
 
 For example, setting Country, changes Prompt to State or Province.
 
-## Eventualy
+## Eventually
 third(second(first(initial_value)));
 first(second, value);
 

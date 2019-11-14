@@ -36,12 +36,12 @@ like "if cart has jeans, offer instant savings widget".\
 <div class="rules_visualizer">
   <div alt="All rules are run in order ">Rules</div>
   <ol style="margin:0">
-    {#each $rule_set as { condition, action }}
+    {#each $rule_set as { predicate, consequence }}
       <li>
         <b>if</b>
-        {condition}
+        {predicate}
         <b>then</b>
-        {action} --
+        {consequence} --
         <a href="#editing_rule" on:click={handleClick}>edit</a>
       </li>
     {/each}

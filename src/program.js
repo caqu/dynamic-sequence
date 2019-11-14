@@ -21,10 +21,12 @@ export default {
     {
       description:
         'Customer has already seen "Explain experience", add Explain experience next',
-      predicate: () => true,
+      predicate: function() {
+        return true;
+      },
       consequence: main_sequence =>
         main_sequence.update(function(ms) {
-          return [...ms, 'Always blue'];
+          return [...ms, 'Explain rule set'];
         })
       // },
       // {

@@ -36,11 +36,9 @@
   const decision = function decision(value, reason) {
     // if value is a rule_set
     if (is_rule_set(value)) {
-      debugger;
       // Concat rules
       rule_set.update(function(rules) {
         const concatenated = [...rules, ...value];
-        debugger;
         return concatenated;
       });
     }
@@ -58,7 +56,6 @@
 
   const process_rules = function process_rules() {
     $rule_set.forEach(function process_rule(rule) {
-      debugger;
       if (rule.predicate($state)) {
         rule.consequence(main_sequence);
       }
