@@ -1,7 +1,23 @@
 <script>
   import { slide } from "svelte/transition";
+  import { derived } from "svelte/store";
+
   export let main_sequence;
+  export let index;
   export let go_to;
+
+  // const sequence = derived([$main_sequence, $index], function(
+  //   $main_sequence,
+  //   $index
+  // ) {
+  //   if ($main_sequence === undefined) {
+  //     return undefined;
+  //   }
+  //   return $main_sequence.map(function(item, _index) {
+  //     return item;
+  //     // { active: _index === $index, name: item };
+  //   });
+  // });
 </script>
 
 <style>
@@ -20,14 +36,17 @@
   .program_visualizer ol {
     padding: 0 0.25rem 0 1rem;
   }
+  .active {
+    font-weight: bold;
+  }
 </style>
 
 <div class="program_visualizer">
-  <div>Control flow</div>
+  <div>Control flow ({$index})</div>
   <ol style="margin:0">
-    {#each $main_sequence as w}
-      <li out:slide>
-        <u on:click={go_to}>{w}</u>
+    {#each $main_sequence as activity, i}
+      <li in:slide class={i == $index ? 'active' : ''}>
+        <u on:click={go_to}>{activity}</u>
       </li>
     {/each}
   </ol>

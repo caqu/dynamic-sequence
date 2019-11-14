@@ -1,6 +1,6 @@
 <script>
   import { onMount, setContext } from "svelte";
-  import { writable, derived } from "svelte/store";
+  import { writable, readable, derived } from "svelte/store";
   import parseq from "./lib/parseq.js";
   import bundled_activities from "./bundled_activities"; // find them at index.js
 
@@ -12,8 +12,8 @@
 
   const log = console.log;
   const loaded_activities = writable({});
-  let activity_index = -1; // TODO fix this!
-  const debugging = true;
+  let activity_index = writable(-1); // TODO initial value should be 0!
+  const debugging = writable(true);
   const { initial_state, initial_rule_set, initial_control_flow } = program;
   // TODO here reload from sessionStorage
   const state = writable(initial_state);
@@ -63,8 +63,8 @@
   };
 
   const next_activity = function next_activity() {
-    activity_index += 1;
-    const name = $main_sequence[activity_index];
+    activity_index.set($activity_index + 1);
+    const name = $main_sequence[$activity_index];
     const activity = bundled_activities[name];
     // If the activity is bundled
     if (activity !== undefined) {
@@ -121,7 +121,28 @@
   });
 
   // For programmers
-  const editor_props = { debugging, state, rule_set, main_sequence };
+  let editor_readables = {
+    state: readable(undefined, function (set) {
+      return state.subscribe(set);
+    }),
+    main_sequence: readable(undefined, function (set) {
+      return main_sequence.subscribe(set);
+    }),
+    activity_index: readable(undefined, function (set) {
+      return activity_index.subscribe(set);
+    })
+  };
+  let editor_writables = {
+    debugging,
+    rule_set
+  };
+
+  // let toggle = writable(false);
+  // const read_only_value = readable($toggle, function start(set) {
+  // 	toggle.subscribe(v => set(v));
+  // });
+  // <h1>The time is {$read_only_value}</h1>
+  // <input type="checkbox" bind:checked={$toggle} />{$toggle}
 </script>
 
 <MenuButton
@@ -137,4 +158,5 @@
   </div>
 {/if}
 
-<Editor props={editor_props} />
+<div style="position:absolute;top:0">{$activity_index}</div>
+<Editor readables={editor_readables} writables={editor_writables} />
