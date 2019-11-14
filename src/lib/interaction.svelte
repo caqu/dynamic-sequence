@@ -5,12 +5,13 @@
   import { writable } from "svelte/store";
   import { default as LoadingAnimation } from "./loading_animation.svelte";
 
-  // handler is a Function that returns a Promise, 
+  // handler is a Function that returns a Promise,
   // if you don't provide one, this default handler resolves immediately.
-  export let handler = () =>
-    new Promise((resolve, reject) => {
+  export let handler = function() {
+    return new Promise(function(resolve, reject) {
       resolve();
     });
+  };
 
   let pending = false;
   let move_to_next_question_interval_id;
@@ -27,7 +28,7 @@
   // OLD
   // function handleSubmission(event) {
   //   // Store the Input given by the user to the Prompt.
-  //   use r_inputs.update(I => {
+  //   use r_inputs.update(function(I) {
   //     const n = {};
   //     n[event.target.id] = document.activeElement.value;
   //     return { ...I, ...n };
@@ -45,7 +46,7 @@
   // let _store = JSON.stringify($use r_inputs);
 
   let component;
-  onMount(o => {
+  onMount(function(o) {
     let i = component.querySelector("input");
     if (i && i.nodeName === "INPUT") {
       i.focus();

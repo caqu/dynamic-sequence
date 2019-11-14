@@ -4,15 +4,19 @@
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
-  export let callback;
+  console.log("Brand intro in the house!!");
+
+  export let decision = function() {};
   export let props;
 
   let showing = false;
-  onMount(() => (showing = true));
-  const clearer = setTimeout(() => {
-    callback(true);
+  onMount(function() {
+    showing = true;
+  });
+  const clearer = setTimeout(function() {
+    decision(true);
   }, 3000);
-  onDestroy(() => {
+  onDestroy(function() {
     clearTimeout(clearer);
   });
 </script>

@@ -1,44 +1,43 @@
-import svelte from "rollup-plugin-svelte";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import livereload from "rollup-plugin-livereload";
-import { terser } from "rollup-plugin-terser";
+import svelte from 'rollup-plugin-svelte';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import livereload from 'rollup-plugin-livereload';
+import { terser } from 'rollup-plugin-terser';
+import activity_list from './src/activity_list';
+import pkg from './package.json';
 
 const production = !process.env.ROLLUP_WATCH;
 
-let output_list = [];
-let fs = require("fs");
-fs.readdirSync("src/interaction_components", function(err, items) {
-  for (var i = 0; i < items.length; i++) {
-    //     if (items[i].endsWith(".svelte")) {
-    //       generate_output_config(items[i]);
-    console.log(items[i]);
-    //       output_list.push(generate_output_config(items[i]));
-    //     }
-  }
-});
-output_list.push(generate_output_config("app"));
+let next_live_reload_port = 35729;
 
-function generate_output_config(name) {
+// Each Activity (Svelte file) will be transpiled into its own JS file.
+let output_list = Object.keys(activity_list).map(name => {
+  const file_name = activity_list[name];
   return {
-    // input: "src/interaction_components/" + name + ".svelte",
-    input: "src/main.js",
+    input: 'src/loadable_activities/' + file_name + '.svelte',
     output: {
-      sourcemap: true,
-      format: "iife",
-      name,
-      // file: "public/bundles/" + name + ".js"
-      file: "public/bundle.js"
+      format: 'es',
+      name: file_name,
+      file: 'public/bundles/' + file_name + '.js'
     },
     plugins: [
       svelte({
         // enable run-time checks when not in production
-        dev: !production,
+        dev: !production
+
+        // You can restrict which files are compiled
+        // using `include` and `exclude`
+        // include: 'src/components/**/*.svelte',
+
+        // load this as a Web Component, like <my-input />
+        // customElement: true
+
         // we'll extract any component CSS out into
         // a separate file — better for performance
-        css: css => {
-          css.write("public/bundle.css");
-        }
+        // no we won't bundle the free-standing modules with the CSS.
+        // css: function(css) {
+        //   css.write('public/bundles/' + file_name + '.css');
+        // }
       }),
 
       // If you have external dependencies installed from
@@ -49,13 +48,17 @@ function generate_output_config(name) {
       resolve({
         browser: true,
         dedupe: importee =>
-          importee === "svelte" || importee.startsWith("svelte/")
+          importee === 'svelte' || importee.startsWith('svelte/')
       }),
-      commonjs(),
+      // commonjs(),
 
       // Watch the `public` directory and refresh the
       // browser on changes when not in production
-      !production && livereload("public"),
+      // if (!production) {
+      //   livereload({
+      //     watch: 'public',
+      //     port: next_live_reload_port++
+      //   }), }
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify
@@ -65,6 +68,55 @@ function generate_output_config(name) {
       clearScreen: false
     }
   };
-}
+});
+
+// Config for Main Application that loads first and then controls the flow of Activities
+output_list.push({
+  input: 'src/main.js',
+  output: {
+    sourcemap: true,
+    format: 'iife',
+    name: 'app',
+    file: 'public/bundles/main.js'
+  },
+  plugins: [
+    svelte({
+      // enable run-time checks when not in production
+      dev: !production,
+      // we'll extract any component CSS out into
+      // a separate file — better for performance
+      css: css => {
+        css.write('public/bundle.css');
+      }
+    }),
+
+    // If you have external dependencies installed from
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration —
+    // consult the documentation for details:
+    // https://github.com/rollup/rollup-plugin-commonjs
+    resolve({
+      browser: true,
+      dedupe: importee =>
+        importee === 'svelte' || importee.startsWith('svelte/')
+    }),
+    commonjs(),
+
+    // Watch the `public` directory and refresh the
+    // browser on changes when not in production
+    !production &&
+      livereload({
+        watch: 'public',
+        port: next_live_reload_port
+      }),
+
+    // If we're building for production (npm run build
+    // instead of npm run dev), minify
+    production && terser()
+  ],
+  watch: {
+    clearScreen: false
+  }
+});
 
 export default output_list;

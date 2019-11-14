@@ -1,5 +1,17 @@
 <script>
   export let rule_set;
+
+  const handleClick = function() {
+    alert("Work in progress");
+  };
+  const handleClickAddRule = function() {
+    alert(
+      'Work in progress\
+Merchants will be able to add a rule delivered at runtime via websockets\
+like "if cart has jeans, offer instant savings widget".\
+      '
+    );
+  };
 </script>
 
 <style>
@@ -24,24 +36,17 @@
 <div class="rules_visualizer">
   <div alt="All rules are run in order ">Rules</div>
   <ol style="margin:0">
-    {#each $rule_set as { condition, action }}
+    {#each $rule_set as { predicate, consequence }}
       <li>
         <b>if</b>
-        {condition}
+        {predicate}
         <b>then</b>
-        {action} --
-        <a href="#editing_rule" on:click={() => alert('Work in progress')}>
-          edit
-        </a>
+        {consequence} --
+        <a href="#editing_rule" on:click={handleClick}>edit</a>
       </li>
     {/each}
     <li>
-      <a href="#adding_rule" on:click={() => alert('Work in progress\
-Merchants will be able to add a rule delivered at runtime via websockets\
-like "if cart has jeans, offer instant savings widget".\
-      ')}>
-        Add rule
-      </a>
+      <a href="#adding_rule" on:click={handleClickAddRule}>Add rule</a>
     </li>
 
   </ol>

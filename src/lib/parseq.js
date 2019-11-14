@@ -29,16 +29,16 @@ function make_reason(factory_name, excuse, evidence) {
     return reason;
 }
 
-function check_callback(callback, factory_name) {
-    if (typeof callback !== "function" || callback.length !== 2) {
-        throw make_reason(factory_name, "Not a callback.", callback);
+function check_decision(decision, factory_name) {
+    if (typeof decision !== "function" || decision.length !== 2) {
+        throw make_reason(factory_name, "Not a decision.", decision);
     }
 }
 
 function check_requestor_array(requestor_array, factory_name) {
 
 // A requestor array contains only requestors. A requestor is a function that
-// takes wun or two arguments: 'callback' and optionally 'initial_value'.
+// takes wun or two arguments: 'decision' and optionally 'initial_value'.
 
     if (
         !Array.isArray(requestor_array)
@@ -71,7 +71,7 @@ function run(
 
 // The 'run' function does the work that is common to all of the Parseq
 // factories. It takes the name of the factory, an array of requestors, an
-// initial value, an action callback, a timeout callback, a time limit in
+// initial value, an action decision, a timeout decision, a time limit in
 // milliseconds, and a throttle.
 
 // If all goes well, we call all of the requestor functions in the array. Each
@@ -128,18 +128,18 @@ function run(
             let number = next_number;
             next_number += 1;
 
-// Call the next requestor, passing in a callback function,
+// Call the next requestor, passing in a decision function,
 // saving the cancel function that the requestor might return.
 
             const requestor = requestor_array[number];
             try {
                 cancel_array[number] = requestor(
-                    function start_requestor_callback(value, reason) {
+                    function start_requestor_decision(value, reason) {
 
-// This callback function is called by the 'requestor' when it is done.
+// This decision function is called by the 'requestor' when it is done.
 // If we are no longer running, then this call is ignored.
 // For example, it might be a result that is sent back after the time
-// limit has expired. This callback function can only be called wunce.
+// limit has expired. This decision function can only be called wunce.
 
                         if (
                             cancel_array !== undefined
@@ -154,7 +154,7 @@ function run(
 
                             action(value, reason, number);
 
-// Clear 'number' so this callback can not be used again.
+// Clear 'number' so this decision can not be used again.
 
                             number = undefined;
 
@@ -172,7 +172,7 @@ function run(
                     value
                 );
 
-// Requestors are required to report their failure thru the callback.
+// Requestors are required to report their failure thru the decision.
 // They are not allowed to throw exceptions. If we happen to catch wun,
 // it is treated as a failure.
 
@@ -286,8 +286,8 @@ function parallel(
 // We check the array and return the requestor.
 
     check_requestor_array(requestor_array, factory_name);
-    return function parallel_requestor(callback, initial_value) {
-        check_callback(callback, factory_name);
+    return function parallel_requestor(decision, initial_value) {
+        check_decision(decision, factory_name);
         let number_of_pending = requestor_array.length;
         let number_of_pending_required = number_of_required;
         let results = [];
@@ -314,8 +314,8 @@ function parallel(
                     number_of_pending_required -= 1;
                     if (value === undefined) {
                         cancel(reason);
-                        callback(undefined, reason);
-                        callback = undefined;
+                        decision(undefined, reason);
+                        decision = undefined;
                         return;
                     }
                 }
@@ -331,12 +331,12 @@ function parallel(
                     )
                 ) {
                     cancel(make_reason(factory_name, "Optional."));
-                    callback(
+                    decision(
                         factory_name === "sequence"
                         ? results.pop()
                         : results
                     );
-                    callback = undefined;
+                    decision = undefined;
                 }
             },
             function parallel_timeout() {
@@ -355,7 +355,7 @@ function parallel(
                     time_option = undefined;
                     if (number_of_pending_required < 1) {
                         cancel(reason);
-                        callback(results);
+                        decision(results);
                     }
                 } else {
 
@@ -364,11 +364,11 @@ function parallel(
 
                     cancel(reason);
                     if (number_of_pending_required < 1) {
-                        callback(results);
+                        decision(results);
                     } else {
-                        callback(undefined, reason);
+                        decision(undefined, reason);
                     }
-                    callback = undefined;
+                    decision = undefined;
                 }
             },
             time_limit,
@@ -471,24 +471,24 @@ function parallel_object(
 
 // Return the parallel object requestor.
 
-    return function parallel_object_requestor(callback, initial_value) {
+    return function parallel_object_requestor(decision, initial_value) {
 
 // When our requestor is called, we return the result of our parallel requestor.
 
         return parallel_requestor(
 
-// We pass our callback to the parallel requestor,
+// We pass our decision to the parallel requestor,
 // converting its value into an object.
 
-            function parallel_object_callback(value, reason) {
+            function parallel_object_decision(value, reason) {
                 if (value === undefined) {
-                    return callback(undefined, reason);
+                    return decision(undefined, reason);
                 }
                 const object = Object.create(null);
                 names.forEach(function (name, index) {
                     object[name] = value[index];
                 });
-                return callback(object);
+                return decision(object);
             },
             initial_value
         );
@@ -507,8 +507,8 @@ function race(requestor_array, time_limit, throttle) {
     );
 
     check_requestor_array(requestor_array, factory_name);
-    return function race_requestor(callback, initial_value) {
-        check_callback(callback, factory_name);
+    return function race_requestor(decision, initial_value) {
+        check_decision(decision, factory_name);
         let number_of_pending = requestor_array.length;
         let cancel = run(
             factory_name,
@@ -517,20 +517,20 @@ function race(requestor_array, time_limit, throttle) {
             function race_action(value, reason, number) {
                 number_of_pending -= 1;
 
-// We have a winner. Cancel the losers and pass the value to the 'callback'.
+// We have a winner. Cancel the losers and pass the value to the 'decision'.
 
                 if (value !== undefined) {
                     cancel(make_reason(factory_name, "Loser.", number));
-                    callback(value);
-                    callback = undefined;
+                    decision(value);
+                    decision = undefined;
                 }
 
 // There was no winner. Signal a failure.
 
                 if (number_of_pending < 1) {
                     cancel(reason);
-                    callback(undefined, reason);
-                    callback = undefined;
+                    decision(undefined, reason);
+                    decision = undefined;
                 }
             },
             function race_timeout() {
@@ -540,8 +540,8 @@ function race(requestor_array, time_limit, throttle) {
                     time_limit
                 );
                 cancel(reason);
-                callback(undefined, reason);
-                callback = undefined;
+                decision(undefined, reason);
+                decision = undefined;
             },
             time_limit,
             throttle

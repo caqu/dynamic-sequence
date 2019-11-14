@@ -2,8 +2,12 @@
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
-  export let callback;
+  export let decision;
   export let props;
+
+  function handleClick () {
+    decision(true);
+  }
 </script>
 
 <style>
@@ -17,7 +21,7 @@
   }
 </style>
 
-<div on:click={() => callback(true)}>
+<div on:click={handleClick}>
   <p style="max-width:30rem">
     On the bottom left, you can see the results of previous interactions between
     brand and customer, in other words, the application state. On the bottom

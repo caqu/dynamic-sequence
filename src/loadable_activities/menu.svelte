@@ -1,11 +1,11 @@
 <script>
   import I from "../lib/interaction.js";
   const { Interaction, Prompt, Inputs, Feedback } = I;
-  
-    export let callback;
+
+    export let decision;
 
   function handler(event){
-    callback(event.target.value);
+    decision(event.target.value);
   }
 </script>
 <style>
@@ -13,7 +13,7 @@
 </style>
 
 <Interaction>
-  <input list="option" autocomplete=off 
+  <input list="option" autocomplete=off
     on:change={handler}
   />
 </Interaction>

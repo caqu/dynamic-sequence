@@ -1,192 +1,162 @@
 <script>
   import { onMount, setContext } from "svelte";
-  import { writable, derived } from "svelte/store";
+  import { writable, readable, derived } from "svelte/store";
   import parseq from "./lib/parseq.js";
-  import I from "./interaction_components";
+  import bundled_activities from "./bundled_activities"; // find them at index.js
+
+  import activity_list from "./activity_list.js";
   import MenuButton from "./lib/menu_button.svelte";
-  import ResultsVisualizer from "./lib/results_visualizer.svelte";
-  import RulesVisualizer from "./lib/rules_visualizer.svelte";
-  import ProgramVisualizer from "./lib/program_visualizer.svelte";
-  const { fallback, sequence } = parseq;
-  const either = arr => fallback(arr.map(s => WidgetFactory(s)));
-  const step_thru = arr => sequence(arr.map(s => WidgetFactory(s)));
-  // AST: JSON to functions Editing a program in the browser.
-  const initial_sequence = [
-    // "Menu",
-    "Brand intro",
-    "Explain experience",
-    "Product listing",
-    // "Product variant selector",
-    "Explain experience part 2",
-    "Review cart",
-    "Apply promo code",
-    "Select account mode",
-    // "Select shipping address",
-    // "Select shipping method",
-    "Select payment method",
-    "Verify order"
-  ];
-  const interactions = {
-    "Select account mode": either([
-      "Sign in or create account",
-      "Proceed as guest" // + retry sign-in button (?)
-    ]),
-    "Sign in or create account": step_thru([
-      "Enter username", // checks if the username exists in the DB
-      "Submit password" // sign in or create an account // reply we sent you email confirmation
-    ]),
-    // Select from saved
-    "Select shipping address": step_thru([
-      "Enter first and last name",
-      "Enter shipping address",
-      "Enter phone number",
-      "Enter email address",
-      "Sign up for newsletter", // submits form to backend
-      either(["Verify shipping", "Select shipping address"])
-    ]),
-    "Select shipping method": false, // submits form to backend
-    "Select payment method": either([
-      "Pay with PayPal",
-      "Pay with a credit card"
-    ]),
-    "Pay with a credit card": step_thru([
-      "Enter name on card",
-      "Enter credit card number",
-      "Enter expiration MM/YY",
-      "Enter security code CVV",
-      either([
-        "Use shipping address as billing address",
-        "Enter billing address"
-      ])
-    ]),
-    "Verify order": false, // e.g.: click "Edit shipping method" adds an 'Select shipping method' before this one.
-    "Order confirmation": false
-  };
-  const rule_set = writable([
-    {
-      condition: "customer has not seen explanation",
-      action: "add Explain experience next"
-    },
-    {
-      condition: "any cart.item is shippable",
-      action: "add shipping address before Select payment method"
-    },
-    {
-      condition:
-        "any cart.item is rated mature and age verification is missing",
-      action: "add age verification next"
-    }
-  ]);
-  const main_sequence = writable(initial_sequence);
-  const widget_sequence = derived(main_sequence, $main_sequence =>
-    $main_sequence.map(s => WidgetFactory(s))
-  );
-  const state = writable({
-    // adjective: "beautiful",
-    // main_sequence
-  });
-  widget_sequence.subscribe(ws => {
-    sequence(ws)(show_end_of_sequence, state);
-    // Program
-    // sequence(initial_sequence)("Order confirmation");
-  });
+  import program from "./program.js";
+
+  import Editor from "./editor.svelte";
+
+  const log = console.log;
+  const loaded_activities = writable({});
+  let activity_index = writable(-1); // TODO initial value should be 0!
+  const debugging = writable(true);
+  const { initial_state, initial_rule_set, initial_control_flow } = program;
+  // TODO here reload from sessionStorage
+  const state = writable(initial_state);
+  const rule_set = writable(initial_rule_set);
+  const main_sequence = writable(initial_control_flow);
+  // Pre-loaded version
+  // const ComponentRef = writable(bundled_activities["Brand intro"]);
+  // Unloaded version
   const ComponentRef = writable();
 
-  let callback;
-  function WidgetFactory(name) {
-    return function component_requestor(cb, output_from_caller) {
-      // console.log("component_requestor", name, I);
-      I[name];
-      ComponentRef.set(I[name]);
-      callback = cb;
-    };
-  }
-  function show_end_of_sequence(value, reason) {
-    // Our program may never "ends",
-    // rather it loop onto itself from Order Confirmation 
-    // to Continue Shopping.
-  }
-  function go_to(event) {
-    const component_name = this.innerText;
-    console.log(component_name);
-    ComponentRef.set(I[component_name]);
+  log("activity_list", activity_list);
+
+  /**
+   * When an activity completes (including "reducing" the state),
+   * it should call-back this function that will:
+   * 1- process the rules to update the control flow
+   * 2- load the next activity (if needed)
+   * 3- show the next activity
+   */
+  const decision = function decision(value, reason) {
+    // if value is a rule_set
+    if (is_rule_set(value)) {
+      // Concat rules
+      rule_set.update(function(rules) {
+        const concatenated = [...rules, ...value];
+        return concatenated;
+      });
+    }
+    process_rules();
+    next_activity();
+  };
+
+  const is_rule_set = function is_rule_set(rule_set) {
+    return (
+      Array.isArray(rule_set) &&
+      rule_set[0] !== undefined &&
+      typeof rule_set[0].predicate === "function"
+    );
+  };
+
+  const process_rules = function process_rules() {
+    $rule_set.forEach(function process_rule(rule) {
+      if (rule.predicate($state)) {
+        rule.consequence(main_sequence);
+      }
+    });
+  };
+
+  const next_activity = function next_activity() {
+    activity_index.set($activity_index + 1);
+    const name = $main_sequence[$activity_index];
+    const activity = bundled_activities[name];
+    // If the activity is bundled
+    if (activity !== undefined) {
+      add_loaded_activity(name, activity);
+      mount_activity(activity);
+    }
+    console.log("loaded_activities", $loaded_activities);
+    // If the activity needs to be loaded
+    if ($loaded_activities[name] === undefined) {
+      load_activity(function handle_load(name, activity) {
+        add_loaded_activity(name, activity);
+        mount_activity(activity);
+      }, name);
+    }
+  };
+
+  function add_loaded_activity(name, activity) {
+    loaded_activities.update(function(ws) {
+      const newObj = {};
+      newObj[name] = activity;
+      const r = Object.assign({}, ws, newObj);
+      return r;
+    });
   }
 
-  function x(s) {
-    console.log("get x", s, interactions);
-    if (typeof interactions[s] === "function") return interactions[s];
-    // if (components[s]) return components[s];
-    throw new Error(`Please create interaction "${s}"`);
+  const mount_activity = function mount_activity(activity) {
+    ComponentRef.set(activity);
+  };
+
+  function load_activity(callback, bundle_name) {
+    const file_name = activity_list[bundle_name];
+    const bundle_address = `/bundles/${file_name}.js`;
+    log("Will attempt to load ", file_name, "at", bundle_address);
+    if (file_name === undefined) {
+      throw new Error(
+        'Please configure "' + bundle_name + '" in activity_list.js'
+      );
+    }
+    // For example /bundles/brand_intro.js
+    import(bundle_address)
+      .then(function(m) {
+        callback(bundle_name, m.default);
+      })
+      .catch(function(message) {
+        console.log("Failed to fetch activity", message);
+      });
   }
+
+  onMount(function handle_mount() {
+    console.log("On mount loading ", $main_sequence);
+    console.log("ComponentRef ", $ComponentRef);
+    next_activity();
+    return function handle_dismount() {};
+  });
+
+  // For programmers
+  let editor_readables = {
+    state: readable(undefined, function (set) {
+      return state.subscribe(set);
+    }),
+    main_sequence: readable(undefined, function (set) {
+      return main_sequence.subscribe(set);
+    }),
+    activity_index: readable(undefined, function (set) {
+      return activity_index.subscribe(set);
+    })
+  };
+  let editor_writables = {
+    debugging,
+    rule_set
+  };
+
+  // let toggle = writable(false);
+  // const read_only_value = readable($toggle, function start(set) {
+  // 	toggle.subscribe(v => set(v));
+  // });
+  // <h1>The time is {$read_only_value}</h1>
+  // <input type="checkbox" bind:checked={$toggle} />{$toggle}
 </script>
 
-<style>
-  /* TODO these globals need to be scoped */
-  /* :global(form) {
-    position: absolute;
-    left: auto;
-    right: auto;
-    padding: 1rem;
-    max-width: 40rem;
-    display: none;
-    transform: translateY(100vh);
-  }
-  :global(form.active) {
-    display: block;
-    animation: scroll-in ease-out 0.6s;
-    transform: translateY(0vh);
-  } */
-  /* :global(form.complete) {
-    display: block;
-    animation: scroll-out ease-out 0.6s;
-    transform: translateY(-100vh);
-  } */
-  /* @keyframes scroll-in {
-    0% {
-      transform: translateY(100vh);
-    }
-    1% {
-      display: block;
-    }
-    100% {
-      display: block;
-      transform: translateY(0);
-    }
-  }
-  @keyframes scroll-out {
-    0% {
-      display: block;
-      transform: translateY(0);
-    }
-    99% {
-      display: block;
-    }
-    100% {
-      transform: translateY(-100vh);
-      /* rotateX(90deg) translateY(-100%) * /
-      display: none;
-    }
-  } */
-</style>
+<MenuButton
+  decision={function() {
+    alert('TODO show menu');
+  }} />
 
-<MenuButton callback={()=>alert('TODO show menu')} />
-
-{#if $ComponentRef}
-  <!-- TODO https://www.brianstorti.com/the-actor-model/
-this explore if this needs to be an iframe  so that we can 
-let it crash, and have this app refresh the contents 
-to stable state.
-Or an import(file.js)?
- -->
-  <svelte:component this={$ComponentRef} {callback} props={state} />
+{#if $ComponentRef !== undefined}
+  <svelte:component this={$ComponentRef} {decision} props={state} />
 {:else}
   <div style="color:red;padding:1rem;background:white">
     Please configure component "{$main_sequence[0]}"
   </div>
 {/if}
 
-<!-- if debugging -->
-<ResultsVisualizer {state} />
-<RulesVisualizer {rule_set} />
-<ProgramVisualizer {main_sequence} {go_to} />
-<!-- fi debugging -->
+<div style="position:absolute;top:0">{$activity_index}</div>
+<Editor readables={editor_readables} writables={editor_writables} />

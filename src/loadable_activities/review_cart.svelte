@@ -5,14 +5,14 @@
   const { Interaction, Prompt, Inputs, Feedback } = I;
 
   export let props;
-  export let callback;
+  export let decision;
 
   function handler() {
-    callback(true);
+    decision(true);
   }
 
   let product_data;
-  onMount(async () => {
+  onMount(async function() {
     if ($props.commerceItems) {
       product_data = await getData($props.commerceItems);
     }
@@ -36,11 +36,11 @@
     }
   };
   // Simulated commerce API
-  const getData = cis => {
-    return new Promise(resolve => {
-      setTimeout(() => {
+  const getData = function(cis) {
+    return new Promise(function(resolve) {
+      setTimeout(function() {
         resolve(
-          cis.map(ci => {
+          cis.map(function(ci) {
             return {
               ...ci,
               ...skus[ci.sku]
@@ -87,9 +87,7 @@
     {#if $props.commerceItems}
       <input type="submit" value="Checkout" />
       <input type="submit" value="Edit Products" />
-    {:else}
-      ...
-    {/if}
+    {:else}...{/if}
     <input type="text" placeholder="Find more products" />
   </Inputs>
 </Interaction>
