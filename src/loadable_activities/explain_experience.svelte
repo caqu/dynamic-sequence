@@ -5,26 +5,34 @@
   export let decision;
   export let props;
 
-  function handleClick() {
+  // mode is developer or customer
+  function cont(mode) {
     props.update(function(props) {
       return {
         ...props,
-        explain_experience: true
+        explainer_mode: mode
       };
     });
-    const new_rule = {
-      predicate: function(state) {
-        return state.explain_experience === true;
-      },
-      consequence: function(main_sequence) {
-        main_sequence.update(function(ms) {
-          return [...ms, "Explain experience 2"];
-        });
-        // TODO could return true / false if it was successful at editing the main_sequence
-        return undefined;
-      }
-    };
-    decision([new_rule]);
+    if (mode == 'developer') {
+      const new_rule = {
+        predicate: function(state) {
+          return state.explainer_mode === mode;
+        },
+        consequence: function(main_sequence) {
+          const activity = "Explain rule set";
+          main_sequence.update(function(ms) {
+            if (ms.includes(activity)) {
+              return ms;
+            } else {
+              return [...ms, activity];
+            }
+          });
+        }
+      };
+      decision([new_rule]);
+    } else if (mode == 'customer'){
+      decision(true);
+    }
   }
 </script>
 
@@ -72,5 +80,6 @@
     size.
     -->
   </p>
-  <button on:click={handleClick}>Continue</button>
+  <button on:click={() => cont('customer')}>Continue as a customer</button>
+  <button on:click={() => cont('developer')}>Continue as a developer</button>
 </div>

@@ -1,16 +1,15 @@
 /**
- * The modules listed on this list include both bundled and independent modules.
- * Independent modules can be loaded asynchrounsly.
+ * The list includes independent modules that can be loaded asynchrounsly.
+ * For bundled modules see /src/bundled_activities/index.js
+ * "Activity name", "file_name"
  */
-// Component name, File name
 export default {
-  'Brand intro': 'brand_intro',
   'Explain experience': 'explain_experience',
   'Explain loaded activities': 'explain_loaded_activities',
   'Explain rule set': 'explain_rule_set',
-  'Explain experience 2': 'explain_experience_2'
+  'Explain experience 2': 'explain_experience_2',
+  'Product listing': 'product_listing'
 };
-// "product_listing",
 // "product_variant_selector",
 // "menu",
 // "confirm_order_inputs",

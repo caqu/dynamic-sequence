@@ -4,7 +4,7 @@
 
   export let props; // a writable store
   export let decision = function() {
-    console.log("please define me parent");
+    console.log("please define me in parent");
   };
 
   // TODO This will be updated to use a commerce backend API
