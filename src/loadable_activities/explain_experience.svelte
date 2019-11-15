@@ -43,14 +43,13 @@
   <p style="max-width:30rem">
     Human attention is precious.
     <!--  -->
-    This experimental shopping workflow guides you through a series of
-    simple activities that arrange themselves based on your prior
-    inputs.
+    This experimental shopping workflow guides you through a series of simple
+    activities that arrange themselves based on your prior inputs.
     <!--  -->
     Each
     <b>activity</b>
-    requires in a minimum unit of work. It takes your input/s, modifies
-    the state of the application, then hands a decision back to the
+    requires that you do a minimum unit of work. An activity takes your input/s,
+    modifies the state of the application, then hands a decision back to the
     main application.
     <!--  -->
     After each activity is completed, the application takes the activity's

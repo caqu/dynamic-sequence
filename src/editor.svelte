@@ -8,15 +8,19 @@
   export let writables;
   let { debugging, rule_set } = writables;
   let { state, main_sequence, go_to, activity_index } = readables;
-  $: o = JSON.stringify(readables);
 </script>
 
-<input type="checkbox" bind:checked={$debugging}
-  style="position:absolute;top:0;left:0"
-/>
+<style>
+  .container {
+    display: flex;
+    position: relative;
+  }
+</style>
 
 {#if $debugging}
-  <ResultsVisualizer {state} />
-  <RulesVisualizer {rule_set} />
-  <ProgramVisualizer {main_sequence} {go_to} index={activity_index} />
+  <div class="container">
+    <ResultsVisualizer {state} />
+    <RulesVisualizer {rule_set} />
+    <ProgramVisualizer {main_sequence} {go_to} index={activity_index} />
+  </div>
 {/if}

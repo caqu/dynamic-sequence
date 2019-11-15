@@ -122,13 +122,13 @@
 
   // For programmers
   let editor_readables = {
-    state: readable(undefined, function (set) {
+    state: readable(undefined, function(set) {
       return state.subscribe(set);
     }),
-    main_sequence: readable(undefined, function (set) {
+    main_sequence: readable(undefined, function(set) {
       return main_sequence.subscribe(set);
     }),
-    activity_index: readable(undefined, function (set) {
+    activity_index: readable(undefined, function(set) {
       return activity_index.subscribe(set);
     })
   };
@@ -145,18 +145,73 @@
   // <input type="checkbox" bind:checked={$toggle} />{$toggle}
 </script>
 
-<MenuButton
-  decision={function() {
-    alert('TODO show menu');
-  }} />
+<style>
+  .container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .app {
+    min-height: 50vh;
+    /* max-height: 66vh; */
+    overflow: auto;
+    margin: 0;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* TODO this creates a problem on shallow screens */
+    justify-content: center;
+    flex: 100 1 auto;
+  }
+  .introspector {
+    position: relative;
+    padding: 10px;
+    flex: 1 0 auto;
+    max-height: 50vh;
+    background: #333;
+    color: #ccc;
+    overflow: auto;
+    /* resize: both; doesn't work all that well...*/
+  }
+  .toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .toggle-on {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+</style>
 
-{#if $ComponentRef !== undefined}
-  <svelte:component this={$ComponentRef} {decision} props={state} />
-{:else}
-  <div style="color:red;padding:1rem;background:white">
-    Please configure component "{$main_sequence[0]}"
+<div class="container">
+  <div class="app">
+    <MenuButton
+      decision={function() {
+        alert('TODO show menu');
+      }} />
+
+    {#if $ComponentRef !== undefined}
+      <svelte:component this={$ComponentRef} {decision} props={state} />
+    {:else}
+      <div style="color:red;padding:1rem;background:white">
+        Please configure component "{$main_sequence[0]}"
+      </div>
+    {/if}
   </div>
-{/if}
-
-<div style="position:absolute;top:0">{$activity_index}</div>
-<Editor readables={editor_readables} writables={editor_writables} />
+  {#if $debugging}
+    <div class="introspector">
+      <Editor readables={editor_readables} writables={editor_writables} />
+      <input type="checkbox" bind:checked={$debugging} class="toggle" />
+    </div>
+  {:else}
+    <input type="checkbox" bind:checked={$debugging} class="toggle-on" />
+  {/if}
+</div>

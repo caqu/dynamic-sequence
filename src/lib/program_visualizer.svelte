@@ -22,13 +22,11 @@
 
 <style>
   .program_visualizer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 1rem 0 0 0;
+    min-width: 25vw;
+    max-width: 50vw;
     padding: 0.25rem 0 0 0.25rem;
     font-size: 10px;
+    overflow: auto;
   }
   .program_visualizer div {
     padding: 0 0.25rem;
@@ -42,11 +40,12 @@
 </style>
 
 <div class="program_visualizer">
-  <div>Control flow ({$index})</div>
+  <div>Control flow</div>
   <ol style="margin:0">
     {#each $main_sequence as activity, i}
       <li in:slide class={i == $index ? 'active' : ''}>
-        <u on:click={go_to}>{activity}</u>
+        <!-- <u on:click={go_to}>{activity}</u> -->
+        <span>{activity}</span>
       </li>
     {/each}
   </ol>

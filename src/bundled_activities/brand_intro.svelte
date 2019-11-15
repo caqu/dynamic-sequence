@@ -15,7 +15,7 @@
   });
   const clearer = setTimeout(function() {
     decision(true);
-  }, 1000);
+  }, 3000);
   onDestroy(function() {
     clearTimeout(clearer);
   });

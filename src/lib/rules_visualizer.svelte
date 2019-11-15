@@ -16,14 +16,11 @@ like "if cart has jeans, offer instant savings widget".\
 
 <style>
   .rules_visualizer {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 1rem 1rem 0 0;
     padding: 0.25rem;
     font-size: 10px;
+    min-width: 25vw;
+    max-width: 50vw;
+    overflow: auto;
   }
   .rules_visualizer div {
     padding: 0 0.25rem;

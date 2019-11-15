@@ -6,14 +6,12 @@
 
 <style>
   .results_visualizer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 0 1rem 0 0;
+    min-width: 25vw;
+    max-width: 50vw;
     padding: 0.25rem 0.25rem 0;
     font-size: 10px;
     margin: 0;
+    overflow: auto;
   }
   .results_visualizer pre {
     margin: 0;

@@ -18,8 +18,11 @@
       },
       consequence: function(main_sequence) {
         main_sequence.update(function(ms) {
-
-          return [...ms, "Explain experience 2"];
+          if (ms.includes("Explain experience 2")) {
+            return ms;
+          } else {
+            return [...ms, "Explain experience 2"];
+          }
         });
         // TODO could return true / false if it was successful at editing the main_sequence
         return undefined;
@@ -34,6 +37,9 @@
     background: white;
     padding: 0.75rem 1rem 0.5rem;
     border-radius: 0.5rem;
+  }
+  h1 {
+    margin: 0;
   }
   p {
     margin-top: 0;
