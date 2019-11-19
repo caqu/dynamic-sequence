@@ -8,8 +8,8 @@ export default {
   },
   initial_control_flow: [
     // "Menu",
-    // 'Brand intro',
-    // 'Explain experience', // This activity adds an activity
+    'Brand intro',
+    'Explain experience', // This activity adds an activity
     'Product listing',
     // "Explain experience part 2",
     'Review cart'
