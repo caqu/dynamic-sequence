@@ -14,7 +14,7 @@
   };
 </script>
 
-<Interaction {handler}>
+<div class="activity" {handler}>
   username
   <input type="email" value="" />
   <br />
@@ -26,4 +26,4 @@
   or
   <br />
   <input type="button" value="Continue as a guest" on:click={handleClick} />
-</Interaction>
+</div>

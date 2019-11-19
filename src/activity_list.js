@@ -8,9 +8,12 @@ export default {
   'Explain loaded activities': 'explain_loaded_activities',
   'Explain rule set': 'explain_rule_set',
   'Explain experience 2': 'explain_experience_2',
-  'Product listing': 'product_listing'
+  'Product listing': 'product_listing',
+  'Product color selector': 'product_color_selector',
+  'Product size selector': 'product_size_selector',
+  'Roman phone number': 'roman_phone_number',
+  'Review cart': 'review_cart'
 };
-// "product_variant_selector",
 // "menu",
 // "confirm_order_inputs",
 // "create_account",
@@ -24,7 +27,6 @@ export default {
 // "sign_in_or_guest",
 // "username",
 // "verify_email",
-// "review_cart",
 // "apply_promo_code",
 // "select_account_mode",
 // "select_shipping_address",

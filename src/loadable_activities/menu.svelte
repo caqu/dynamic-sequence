@@ -12,11 +12,11 @@
 
 </style>
 
-<Interaction>
+<div class="activity">
   <input list="option" autocomplete=off
     on:change={handler}
   />
-</Interaction>
+</div>
 
 <datalist id="option">
 <option>Track my order</option>

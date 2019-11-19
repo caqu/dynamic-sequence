@@ -11,7 +11,7 @@
   };
 </script>
 
-<Interaction>
+<div class="activity">
   <h1>Woot!</h1>
   <p>
     You will be getting 1 Black
@@ -28,4 +28,4 @@
     on:click={function() {
       sessionStorage.clear();
     }} />
-</Interaction>
+</div>

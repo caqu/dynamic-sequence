@@ -16,8 +16,8 @@ input {
 }
 </style>
 
-<Interaction {handler}>
+<div class="activity" {handler}>
   Got a promo code?
   <input placeholder="000-000" />
   <button>Nope</button>
-</Interaction>
+</div>

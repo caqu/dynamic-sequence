@@ -11,11 +11,11 @@
   };
 </script>
 
-<Interaction {handler}>
+<div class="activity" {handler}>
   <label>
     What
     <i>email</i>
     can we use to send you the receipt?
   </label>
   <input not-type="email" type="text" />
-</Interaction>
+</div>

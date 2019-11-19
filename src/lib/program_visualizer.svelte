@@ -41,7 +41,7 @@
 
 <div class="program_visualizer">
   <div>Control flow</div>
-  <ol style="margin:0">
+  <ol style="margin:0" start="0">
     {#each $main_sequence as activity, i}
       <li in:slide class={i == $index ? 'active' : ''}>
         <!-- <u on:click={go_to}>{activity}</u> -->

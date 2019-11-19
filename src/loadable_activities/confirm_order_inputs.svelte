@@ -11,7 +11,7 @@
   }
 </script>
 
-<Interaction id="validate_order_inputs" happy="order_confirmation" sad="revise_order">
+<div class="activity" id="validate_order_inputs" happy="order_confirmation" sad="revise_order">
   <p>
     <img
       src="https://s7d9.scene7.com/is/image/AmericanApparel/dm3654w_black?wid=240"
@@ -31,4 +31,4 @@
   <input type="submit" value="Edit Payment" />
   </p>
   <input type="submit" value="Place Order" path="happy" />
-</Interaction>
+</div>

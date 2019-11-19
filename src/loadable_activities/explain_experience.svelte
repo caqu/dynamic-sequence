@@ -13,11 +13,14 @@
         explainer_mode: mode
       };
     });
-    if (mode == 'developer') {
+    if (mode == "developer") {
       const new_rule = {
-        predicate: function(state) {
-          return state.explainer_mode === mode;
-        },
+        description: "Developer mode, explain application flow",
+        predicate: (function(_mode) {
+          return function(state) {
+            return state.explainer_mode === _mode;
+          };
+        })(mode),
         consequence: function(main_sequence) {
           const activity = "Explain rule set";
           main_sequence.update(function(ms) {
@@ -30,7 +33,7 @@
         }
       };
       decision([new_rule]);
-    } else if (mode == 'customer'){
+    } else if (mode == "customer") {
       decision(true);
     }
   }

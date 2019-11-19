@@ -11,8 +11,8 @@
   };
 </script>
 
-<Interaction>
+<div class="activity">
   <label>How fast do you need this?</label>
   <input value="Next day +$15" />
   <input value="Standard 5-7 days +$0" />
-</Interaction>
+</div>

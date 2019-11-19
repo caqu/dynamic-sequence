@@ -4,19 +4,18 @@
   import {set_shipping_address} from '../stores/shipping_address';
 </script>
 
-<Interaction
+<div class="activity"
   id="shipping_address"
   happy="select_payment_method"
   sad="shipping_address">
-  <Prompt>Where would you like this to be delivered?</Prompt>
+  <div>Where would you like this to be delivered?</div>
   <InputAddress
     placeholder="123 Main Street"
     fillInAddress={set_shipping_address} />
-  <Feedback />
-</Interaction>
+</div>
 
-<!-- 
-<Interaction
+<!--
+<div class="activity"
   id="shipping_address_filled"
   happy="select_payment_method"
   sad="shipping_address">
@@ -28,5 +27,5 @@
   <p>Is this still alright?</p>
   <input type="submit" value="Yes" path="happy" />
   <input type="submit" value="No, edit shipping address" path="sad" />
-</Interaction> 
+</div>
 -->

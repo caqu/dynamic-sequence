@@ -1,0 +1,1524 @@
+{
+    "product": "2001w",
+    "sizes": [
+        {
+            "sku": "tshirt_xs",
+            "name": "XS",
+            "neck": "13.5-14",
+            "chest": "35-36",
+            "arm": "31.5"
+        },
+        {
+            "sku": "tshirt_s",
+            "name": "S",
+            "neck": "14.5-15",
+            "chest": "37-39",
+            "arm": "32.5"
+        },
+        {
+            "sku": "tshirt_m",
+            "name": "M",
+            "neck": "15-15.5",
+            "chest": "40-42",
+            "arm": "33.5"
+        },
+        {
+            "sku": "tshirt_m-tall",
+            "name": "M TALL",
+            "neck": "15-15.5",
+            "chest": "40-42",
+            "arm": "34.5"
+        },
+        {
+            "sku": "tshirt_l",
+            "name": "L",
+            "neck": "15.5-16",
+            "chest": "43-45",
+            "arm": "34.5"
+        },
+        {
+            "sku": "tshirt_l-tall",
+            "name": "L TALL",
+            "neck": "15.5-16",
+            "chest": "43-45",
+            "arm": "35.5"
+        },
+        {
+            "sku": "tshirt_xl",
+            "name": "XL",
+            "neck": "16.5-17",
+            "chest": "46-48",
+            "arm": "35.5"
+        },
+        {
+            "sku": "tshirt_xl-tall",
+            "name": "XL TALL",
+            "neck": "16.5-17",
+            "chest": "46-48",
+            "arm": "36.5"
+        },
+        {
+            "sku": "tshirt_xxl",
+            "name": "XXL",
+            "neck": "17-18",
+            "chest": "49-51",
+            "arm": "36.5"
+        },
+        {
+            "sku": "tshirt_xxxl",
+            "name": "XXXL",
+            "neck": "18-19",
+            "chest": "52-54",
+            "arm": "37"
+        }
+    ],
+    "returnable": true,
+    "productCode": "ACTIVE",
+    "colors": [
+        {
+            "inventory": "0",
+            "name": "Red",
+            "src": "tshirt-red.png"
+        },
+        {
+            "inventory": "0",
+            "name": "White",
+            "src": "tshirt-white.png"
+        },
+        { "inventory": "0", "name": "Blue", "src": "tshirt-blue.png" }
+    ],
+    "productId": "tshirt",
+    "models": {},
+    "partialSale": false,
+    "sizeNameMaxLength": 3,
+    "name": "Classic T-Shirt with Line",
+    "skus": {
+        "Asphalt2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l876a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Baby BlueS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l882asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "BlackXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz36axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "SlateXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l873axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "TruffleXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l865axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "TruffleS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l865asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Baby BlueL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l882alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "Baby BlueM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l882amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "Black3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz36a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "BlackXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz36axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "TruffleXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l865axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Navy3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz32a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "PinkL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz14alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "PinkM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz14amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "SlateXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l873axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "PinkS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz14asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Royal Blue2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l848a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Baby Blue2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l882a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Kelly GreenXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz84axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Royal BlueXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l848axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Russet3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lap8a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "WhiteXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz00axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Brown2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l874a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Kelly GreenXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz84axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Royal BlueXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l848axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Forest3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l898a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "RedS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz63asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "OrangeXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz37axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "OrangeXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz37axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Heather Grey3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l18za3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Cranberry2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l889a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Forest2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l898a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Truffle2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l865a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Pink2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz14a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Crème3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l890a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Ash Grey3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l17za3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Orange3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz37a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Ash Grey2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l17za2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "BrownXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l874axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Pink3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz14a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Crème2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l890a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Royal BlueS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l848asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Kelly Green2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz84a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "New Silver2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l835a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "BrownXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l874axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Heather GreyM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l18zamd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "Heather GreyL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l18zalg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "WhiteXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz00axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Heather GreyS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l18zasm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "ForestM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l898amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "NavyXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz32axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "ForestS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l898asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "WhiteM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0lz00amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "ForestXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l898axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "AsphaltXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l876axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Royal BlueL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l848alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "Ash GreyS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l17zasm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "WhiteL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz00alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "NavyXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz32axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Royal BlueM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l848amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "ForestL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l898alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "Ash GreyM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l17zamd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "ForestXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Forest",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l898axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "AsphaltXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l876axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Ash GreyL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l17zalg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "WhiteS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0lz00asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "CrèmeS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l890asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "New SilverL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l835alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "CranberryXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l889axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Asphalt3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l876a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "OrangeL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz37alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "OrangeM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz37amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "RussetXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0lap8axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "BrownL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l874alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "BrownM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l874amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "CranberryS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l889asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Black2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0lz36a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Ash GreyXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l17zaxl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "BrownS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l874asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "RussetXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lap8axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "CranberryM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l889amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "CranberryXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l889axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "CranberryL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l889alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "New SilverXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l835axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "CrèmeXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l890axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Royal Blue3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Royal Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l848a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Cranberry3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Cranberry",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l889a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "White2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz00a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "AsphaltL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l876alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "AsphaltM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l876amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "BlackS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz36asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "New SilverXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l835axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "CrèmeXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l890axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Heather Grey2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l18za2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Baby BlueXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l882axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "White3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "White",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz00a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Red3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz63a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Baby BlueXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l882axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "RedXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz63axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "NavyL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0lz32alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "NavyM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz32amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "New SilverM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l835amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "Brown3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Brown",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l874a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "CrèmeL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l890alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "RedXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0lz63axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "BlackM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz36amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "CrèmeM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Crème",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l890amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "NavyS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz32asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Red2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz63a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "AsphaltS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Asphalt",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l876asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Baby Blue3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Baby Blue",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l882a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "New SilverS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l835asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Russet2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lap8a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "BlackL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Black",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz36alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "TruffleM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "3",
+            "waitlist": false,
+            "skuId": "q0l865amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "TruffleL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l865alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "Slate2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l873a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "SlateS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l873asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "SlateM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l873amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "SlateL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l873alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "Heather GreyXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0l18zaxl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        },
+        "Orange2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz37a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "Kelly Green3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz84a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Slate3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Slate",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l873a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "New Silver3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "New Silver",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l835a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "Heather GreyXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Heather Grey",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l18zaxs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "RussetL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lap8alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "RussetM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lap8amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "Truffle3XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Truffle",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l865a3x0",
+            "salePrice": "$18.00",
+            "size": "3XL"
+        },
+        "PinkXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz14axs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Kelly GreenS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz84asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "RussetS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Russet",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lap8asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "Ash GreyXS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Ash Grey",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0l17zaxs0",
+            "salePrice": "$18.00",
+            "size": "XS"
+        },
+        "Navy2XL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Navy",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz32a2x0",
+            "salePrice": "$18.00",
+            "size": "2XL"
+        },
+        "OrangeS": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Orange",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz37asm0",
+            "salePrice": "$18.00",
+            "size": "S"
+        },
+        "RedL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz63alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "RedM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Red",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz63amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "Kelly GreenL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz84alg0",
+            "salePrice": "$18.00",
+            "size": "L"
+        },
+        "Kelly GreenM": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Kelly Green",
+            "inventory": "0",
+            "waitlist": false,
+            "skuId": "q0lz84amd0",
+            "salePrice": "$18.00",
+            "size": "M"
+        },
+        "PinkXL": {
+            "onSale": false,
+            "price": "$18.00",
+            "color": "Pink",
+            "inventory": "2",
+            "waitlist": false,
+            "skuId": "q0lz14axl0",
+            "salePrice": "$18.00",
+            "size": "XL"
+        }
+    },
+    "valuePricing": {
+        "Black": {
+            "valuePrice": "or 4 for $44"
+        }
+    },
+    "color2size": {
+        "Crème": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Red": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Black": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Russet": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Brown": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Royal Blue": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Forest": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Baby Blue": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "White": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Ash Grey": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Truffle": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Asphalt": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Pink": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Cranberry": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Navy": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Kelly Green": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Slate": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "New Silver": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Orange": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Heather Grey": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+    }
+}

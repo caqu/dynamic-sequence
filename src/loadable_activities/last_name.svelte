@@ -20,15 +20,7 @@
   }
 </script>
 
-<Interaction id="last_name" {handler}>
-  <Prompt>What's your last name?</Prompt>
-  <Inputs>
-    <input name="last_name" placeholder="" value={$props.last_name || ''} />
-  </Inputs>
-  <!-- <Feedback>
-    <p>
-      So... {$props.first_name} {$props.last_name}. Let's get
-      started!
-    </p>
-  </Feedback> -->
-</Interaction>
+<div class="activity" id="last_name" {handler}>
+  <div>What's your last name?</div>
+  <input name="last_name" placeholder="" value={$props.last_name || ''} />
+</div>

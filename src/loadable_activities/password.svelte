@@ -11,7 +11,7 @@
   };
 </script>
 
-<Interaction id="password" happy="shipping_address" sad="create_account">
+<div class="activity" id="password" happy="shipping_address" sad="create_account">
   <label>Password?</label>
   <input type="password" placeholder="8-10 characters" />
-</Interaction>
+</div>

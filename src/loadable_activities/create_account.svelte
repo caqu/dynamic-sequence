@@ -11,7 +11,7 @@
   };
 </script>
 
-<Interaction>
+<div class="activity">
   <label>Make up a new password</label>
   <input type="password" placeholder="8-10 characters" />
-</Interaction>
+</div>

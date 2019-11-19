@@ -1,8 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import I from "../lib/interaction.js";
-  const { Interaction, Prompt, Inputs, Feedback } = I;
+  import { config } from "../program.js";
 
   export let props;
   export let decision;
@@ -12,49 +11,20 @@
   }
 
   let product_data;
-  onMount(async function() {
+  onMount(function() {
     if ($props.commerceItems) {
-      product_data = await getData($props.commerceItems);
+      product_data = $props.commerceItems;
     }
   });
-  // Simulated DB data
-  const skus = {
-    donate5: {
-      name: "Make a donation",
-      price: "$5",
-      src: "/demo/mtyp-name-your-own-price-donation-image.png"
-    },
-    mug67: {
-      name: "Mug",
-      price: "$15",
-      src: "/demo/51graM2SdzL._SX466_.jpg"
-    },
-    tshirt16: {
-      name: "Mug",
-      price: "$15",
-      src: "/demo/il_570xN.920729875_naed.jpg"
-    }
-  };
-  // Simulated commerce API
-  const getData = function(cis) {
-    return new Promise(function(resolve) {
-      setTimeout(function() {
-        resolve(
-          cis.map(function(ci) {
-            return {
-              ...ci,
-              ...skus[ci.sku]
-              // price: skus[sku].price,
-              // src: skus[sku].src
-            };
-          })
-        );
-      }, 600);
-    });
-  };
 </script>
 
 <style>
+  .activity {
+    padding: 0.5rem;
+    background: whitesmoke;
+    border: 1rem inset indigo;
+    border-radius: 2px;
+  }
   img {
     display: block;
     margin: 0 auto;
@@ -63,31 +33,61 @@
   p {
     margin-top: 0;
   }
+  .checkout_button {
+    background: #033;
+    border: 0;
+    font-weight: bold;
+    color: #ffe;
+    margin: 1rem auto;
+    display: block;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+  }
 </style>
 
-<Interaction {handler}>
+<div class="activity" {handler}>
   {#if product_data}
     <p>Here's what we've got so far.</p>
     <p>
       {#each product_data as ci}
         <div style="height:96px">
-          <img transition:fade src={ci.src} alt=" " />
+          <img transition:fade src={config.images_path + ci.src} alt=" " />
         </div>
       {/each}
+    </p>
+    <div>
       You picked up a
       {#each product_data as ci}
-        {ci.name}
+        {ci.price} {ci.name}
         {#if ci.size}on size {ci.size}.{/if}
+        <u
+          on:click={event => {
+            event.preventDefault();
+            alert('work in progress');
+            window.location.reload();
+          }}>
+          Edit
+        </u>
       {/each}
-    </p>
+    </div>
+  {:else if product_data === undefined}
+    <b class="loading" />
   {:else}
     <p>Looks like your bag is empty.</p>
   {/if}
-  <Inputs>
-    {#if $props.commerceItems}
-      <input type="submit" value="Checkout" />
-      <input type="submit" value="Edit Products" />
-    {:else}...{/if}
-    <input type="text" placeholder="Find more products" />
-  </Inputs>
-</Interaction>
+
+  {#if $props.commerceItems}
+    <div>
+      <button
+        class="checkout_button"
+        on:click={() => {
+          alert('work in progress'), window.location.reload();
+        }}>
+        Checkout
+      </button>
+    </div>
+  {:else}...{/if}
+
+  <hr />
+  <input type="text" placeholder="Find more products" />
+</div>

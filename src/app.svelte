@@ -18,7 +18,16 @@
   // TODO here reload from sessionStorage
   const state = writable(initial_state);
   const rule_set = writable(initial_rule_set);
+
+  // Custom store
+  // main_sequence.add_next()
+  // main_sequence.add_next_once()
+  // main_sequence.add_last()
+  // main_sequence.add_last_once()
+  // main_sequence.remove()
   const main_sequence = writable(initial_control_flow);
+
+
   // Pre-loaded version
   // const ComponentRef = writable(bundled_activities["Brand intro"]);
   // Unloaded version
@@ -42,7 +51,9 @@
         return concatenated;
       });
     }
+
     process_rules();
+
     next_activity();
   };
 
@@ -57,14 +68,14 @@
   const process_rules = function process_rules() {
     $rule_set.forEach(function process_rule(rule) {
       if (rule.predicate($state)) {
-        rule.consequence(main_sequence);
+        rule.consequence(main_sequence, $activity_index);
       }
     });
   };
 
   const next_activity = function next_activity() {
-    activity_index.set($activity_index + 1);
-    const name = $main_sequence[$activity_index];
+    const next_index = $activity_index + 1;
+    const name = $main_sequence[next_index];
     const activity = bundled_activities[name];
     // If the activity is bundled
     if (activity !== undefined) {
@@ -91,6 +102,8 @@
   }
 
   const mount_activity = function mount_activity(activity) {
+    // TODO Mounting moves to the next activity (doesn't look right...)
+    activity_index.set($activity_index + 1);
     ComponentRef.set(activity);
   };
 
@@ -136,13 +149,6 @@
     debugging,
     rule_set
   };
-
-  // let toggle = writable(false);
-  // const read_only_value = readable($toggle, function start(set) {
-  // 	toggle.subscribe(v => set(v));
-  // });
-  // <h1>The time is {$read_only_value}</h1>
-  // <input type="checkbox" bind:checked={$toggle} />{$toggle}
 </script>
 
 <style>
@@ -201,9 +207,11 @@
     {#if $ComponentRef !== undefined}
       <svelte:component this={$ComponentRef} {decision} props={state} />
     {:else}
-      <div style="color:red;padding:1rem;background:white">
+      <!--
+        TODO Loading vs error
+        <div style="color:red;padding:1rem;background:white">
         Please configure component "{$main_sequence[0]}"
-      </div>
+      </div> -->
     {/if}
   </div>
   {#if $debugging}

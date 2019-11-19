@@ -7,51 +7,99 @@
     console.log("please define me in parent");
   };
 
-  // TODO This will be updated to use a commerce backend API
   const handleClick = function(event) {
-    if (event.target.dataset.sku) {
-      addToCart(event.target.dataset.sku);
+    if (event.target.dataset.sku !== undefined) {
+      add_to_cart({
+        sku: event.target.dataset.sku,
+        name: event.target.dataset.name,
+        src: event.target.dataset.src,
+        price: event.target.dataset.price
+      });
     } else if (event.target.dataset.productid) {
-      selectProduct(event.target.dataset.productid);
+      select_product({
+        product_id: event.target.dataset.productid,
+        name: event.target.dataset.name,
+        price: event.target.dataset.price
+      });
     }
-    // Simulated API network delay
-    setTimeout(function() {
-      decision(true);
-    }, 600);
   };
-  const addToCart = function(sku) {
+  // TODO This will be updated to use a commerce backend API
+  const add_to_cart = function(item) {
     props.update(function(p) {
       return {
         ...$props,
         commerceItems: [
           {
-            sku,
+            ...item,
             quantity: 1
           }
         ]
       };
     });
+    // Simulated API network delay
+    setTimeout(function() {
+      decision(true);
+    }, 600);
   };
-  const selectProduct = function(product_id) {
-    props.update(function(p) {
+  const select_product = function({ product_id, name, price }) {
+    props.update(function(props) {
       return {
-        ...$props,
-        selected_product: product_id
+        ...props,
+        selected_product: {
+          product_id,
+          name,
+          price,
+          requires_color: true,
+          requires_size: true
+        }
       };
     });
+    decision(product_id);
   };
 </script>
 
-<Interaction>
-  <Prompt>
-    <p style="max-width:30rem">What would you like to do next?</p>
-  </Prompt>
-  <Inputs>
+<style>
+  .activity {
+    background: white;
+    padding: 0.5rem;
+    max-width: 30rem;
+  }
+  .fake-carousel {
+    display: flex;
+  }
+  button {
+    margin: 0.25rem;
+  }
+</style>
+
+<div class="activity">
+  <div>What would you like to do next?</div>
+  <div class="fake-carousel">
     <!-- Donations, no shipping necessary -->
-    <button on:click={handleClick} data-sku="donate5">Donate $5</button>
+    <button
+      on:click={handleClick}
+      data-sku="donate5"
+      data-name="Donation"
+      data-price="$5"
+      data-src="donation.png">
+      Donate $5
+    </button>
     <!-- No variants, PDP can be skipped -->
-    <button on:click={handleClick} data-sku="mug67">Buy Mug</button>
+    <button
+      on:click={handleClick}
+      data-sku="mug67"
+      data-name="Mug"
+      data-price="$15"
+      data-src="mug.png">
+      Buy Mug
+    </button>
     <!-- Many variants, go to PDP -->
-    <button on:click={handleClick} data-productid="tshirt">Buy T-shirt</button>
-  </Inputs>
-</Interaction>
+    <button
+      on:click={handleClick}
+      data-productid="tshirt"
+      data-name="T-Shirt"
+      data-price="$15">
+      Buy T-shirt
+    </button>
+  </div>
+</div>

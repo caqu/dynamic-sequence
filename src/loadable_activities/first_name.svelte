@@ -31,10 +31,10 @@
   }
 </script>
 
-<Interaction {handler}>
+<div class="activity" {handler}>
   {#if falsy_name_error}
     <div in:slide>Your name can't be falsy.</div>
   {/if}
   <div>What is your first name?</div>
   <input name="first_name" value="" />
-</Interaction>
+</div>

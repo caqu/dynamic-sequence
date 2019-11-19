@@ -6,8 +6,6 @@
  */
 
 // import product_listing from './product_listing.svelte';
-// import product_variant_selector from './product_variant_selector.svelte';
-
 // import menu from './menu.svelte';
 // import confirm_order_inputs from './confirm_order_inputs.svelte';
 // import create_account from './create_account.svelte';
@@ -39,7 +37,6 @@ export default Object.freeze({
   // "Explain experience": explain_experience,
   // 'Explain experience part 2': explain_experience_2,
   // 'Product listing': product_listing,
-  // 'Product variant selector': product_variant_selector,
   // 'Review cart': review_cart,
   // 'Apply promo code': apply_promo_code,
   // 'Select account mode': select_account_mode,

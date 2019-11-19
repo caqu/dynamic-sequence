@@ -11,7 +11,7 @@
   };
 </script>
 
-<Interaction>
+<div class="activity">
   <p>
     Do you want to
     <i>sign in</i>
@@ -21,4 +21,4 @@
   </p>
   <input type="submit" value="Yes!" />
   <input type="submit" value="No, continue as a guest" />
-</Interaction>
+</div>
